@@ -1,0 +1,33 @@
+{
+  "name": "Alchemist's Grand Grimoire",
+  "short_name": "Grimoire",
+  "description": "The mystical medicine tracker for circus performers",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0a1a",
+  "theme_color": "#d4af37",
+  "orientation": "portrait-primary",
+  "categories": ["health", "medical", "lifestyle"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Today's Doses",
+      "url": "/",
+      "description": "View today's elixir schedule"
+    },
+    {
+      "name": "Add Elixir",
+      "url": "/schedules/new",
+      "description": "Brew a new elixir schedule"
+    },
+    {
+      "name": "Calendar",
+      "url": "/calendar",
+      "description": "View the Great Sky Calendar"
+    }
+  ]
+}
