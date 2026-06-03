@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 const PAGE_CONFIG = {
-  '/':               { title: 'Wellness Altar Dashboard', section: 'Wellness' },
+  '/dashboard':      { title: 'Wellness Altar Dashboard', section: 'Wellness' },
   '/schedules':      { title: 'Grand Elixir Log',         section: 'Elixir Log' },
   '/schedules/new':  { title: 'New Elixir Entry',         section: 'Elixir Log' },
   '/logs':           { title: 'Circus Crier Reminders',   section: 'Circus Crier' },

@@ -1,282 +1,300 @@
-'use client';
-import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
-/* ── Circular gauge (SVG) ──────────────────────────────────────────────────── */
-function CircularGauge({ pct = 0, color = '#2563EB', label, sub }) {
-  const r = 44, sw = 9;
-  const circ = 2 * Math.PI * r;
-  const offset = circ - (Math.min(pct, 100) / 100) * circ;
-  return (
-    <div style={{ textAlign: 'center' }}>
-      <svg width="110" height="110" viewBox="0 0 110 110">
-        <circle cx="55" cy="55" r={r} fill="none" stroke="#E5E7EB" strokeWidth={sw} />
-        <circle cx="55" cy="55" r={r} fill="none" stroke={color} strokeWidth={sw}
-          strokeDasharray={circ} strokeDashoffset={offset}
-          strokeLinecap="round" transform="rotate(-90 55 55)"
-          style={{ transition: 'stroke-dashoffset 0.6s ease' }}
-        />
-        <text x="55" y="50" textAnchor="middle" fontSize="18" fontWeight="700" fill="#111827">{pct}%</text>
-        <text x="55" y="66" textAnchor="middle" fontSize="10" fill="#6B7280">{sub}</text>
-      </svg>
-      <div style={{ fontSize: '12px', fontWeight: '600', color: '#374151', marginTop: '4px' }}>{label}</div>
-    </div>
-  );
-}
+const features = [
+  {
+    icon: '⚗️',
+    title: 'Elixir Log',
+    desc: 'Track every medication with dosage, frequency, and schedules. Add, edit, and manage your full prescription history.',
+  },
+  {
+    icon: '🔔',
+    title: 'Smart Reminders',
+    desc: 'Never miss a dose. Browser notifications and email alerts keep every performer on schedule around the clock.',
+  },
+  {
+    icon: '📅',
+    title: 'Sky Calendar',
+    desc: 'Visualise your full dosing calendar by day, week, or month. Sync with Google Calendar for seamless planning.',
+  },
+  {
+    icon: '✦',
+    title: 'Oracle AI Assistant',
+    desc: 'Ask the Gemini-powered Oracle about adherence patterns, missed dose risks, and personalised health insights.',
+  },
+  {
+    icon: '📊',
+    title: 'Wellness Analytics',
+    desc: 'Live adherence gauges, 7-day trend charts, and risk-level alerts give you an instant snapshot of your health.',
+  },
+  {
+    icon: '👥',
+    title: 'Multi-User',
+    desc: 'Each account has a fully isolated workspace. Families, clinics, or teams — everyone sees only their own data.',
+  },
+];
 
-/* ── Wellness index bar ─────────────────────────────────────────────────────── */
-function WiBar({ pct }) {
-  const color = pct >= 70 ? '#10B981' : pct >= 40 ? '#F59E0B' : '#EF4444';
-  return (
-    <div className="wi-bar">
-      <div className="wi-bar-fill" style={{ width: `${pct}%`, background: color }} />
-    </div>
-  );
-}
+const steps = [
+  { n: '01', title: 'Create Your Account', desc: 'Sign up in seconds with your name and email. No credit card required.' },
+  { n: '02', title: 'Add Your Elixirs',    desc: 'Enter each medication — name, dosage, frequency, and daily times.' },
+  { n: '03', title: 'Stay On Track',       desc: 'Receive reminders, log doses, and let the Oracle surface patterns you might miss.' },
+];
 
-/* ── Quick fortune teller input ─────────────────────────────────────────────── */
-function FortuneTellerBar() {
-  const router = useRouter();
-  const [query, setQuery] = useState('');
+export default function LandingPage() {
   return (
-    <div className="card" style={{ marginTop: '20px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+    <div style={{ minHeight: '100vh', background: '#0F172A', color: '#fff', fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>
+
+      {/* ── Navbar ────────────────────────────────────────────────────────────── */}
+      <nav style={{
+        position: 'sticky', top: 0, zIndex: 50,
+        borderBottom: '1px solid rgba(255,255,255,0.07)',
+        background: 'rgba(15,23,42,0.85)',
+        backdropFilter: 'blur(12px)',
+        padding: '0 5%',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        height: '60px',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{
+            width: '32px', height: '32px', borderRadius: '8px',
+            background: 'linear-gradient(135deg,#2563EB,#7C3AED)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px',
+          }}>⚗️</div>
+          <span style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>Alchemist Suite</span>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <Link href="/auth/login" style={{
+            padding: '8px 18px', borderRadius: '8px',
+            border: '1px solid rgba(255,255,255,0.15)',
+            color: 'rgba(255,255,255,0.85)', fontSize: '13px', fontWeight: '500',
+            textDecoration: 'none', transition: 'all 0.15s',
+          }}>
+            Sign In
+          </Link>
+          <Link href="/auth/register" style={{
+            padding: '8px 18px', borderRadius: '8px',
+            background: '#2563EB', border: '1px solid #2563EB',
+            color: '#fff', fontSize: '13px', fontWeight: '600',
+            textDecoration: 'none',
+          }}>
+            Get Started
+          </Link>
+        </div>
+      </nav>
+
+      {/* ── Hero ─────────────────────────────────────────────────────────────── */}
+      <section style={{
+        padding: '100px 5% 80px',
+        textAlign: 'center',
+        background: 'radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37,99,235,0.25), transparent)',
+      }}>
+        {/* Badge */}
         <div style={{
-          width: '32px', height: '32px', borderRadius: '8px',
-          background: 'linear-gradient(135deg,#2563EB,#7C3AED)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-          color: '#fff', fontSize: '14px',
-        }}>✦</div>
-        <div>
-          <div style={{ fontSize: '13px', fontWeight: '700', color: 'var(--text-primary)' }}>Mystic Fortune Teller</div>
-          <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Ask the Alchemist's Oracle about future performer risks, planetary alignments, or elixir compositions.</div>
+          display: 'inline-flex', alignItems: 'center', gap: '6px',
+          background: 'rgba(37,99,235,0.15)', border: '1px solid rgba(37,99,235,0.35)',
+          borderRadius: '20px', padding: '5px 14px', marginBottom: '28px',
+          fontSize: '12px', color: '#93C5FD', fontWeight: '600', letterSpacing: '0.04em',
+        }}>
+          <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#60A5FA', display: 'inline-block' }} />
+          NOW WITH AI-POWERED ADHERENCE INSIGHTS
         </div>
-      </div>
-      <div style={{ display: 'flex', gap: '8px' }}>
-        <input
-          className="field-input"
-          placeholder="Seek wisdom from the oracle..."
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-          onKeyDown={e => { if (e.key === 'Enter' && query.trim()) router.push('/fortune-teller'); }}
-          style={{ flex: 1 }}
-        />
-        <button
-          className="btn-primary"
-          style={{ padding: '9px 16px', flexShrink: 0, fontSize: '12px' }}
-          onClick={() => router.push('/fortune-teller')}
-        >
-          Query Oracle ▶
-        </button>
-      </div>
-    </div>
-  );
-}
 
-/* ── Dashboard ─────────────────────────────────────────────────────────────── */
-export default function Dashboard() {
-  const [logs, setLogs] = useState([]);
-  const [history, setHistory] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [today, setToday] = useState('');
-
-  const fetchAll = useCallback(async () => {
-    setLoading(true);
-    const [logsRes, histRes] = await Promise.all([
-      fetch('/api/logs').then(r => r.ok ? r.json() : []),
-      fetch('/api/logs/history?days=7').then(r => r.ok ? r.json() : []),
-    ]);
-    setLogs(logsRes);
-    setHistory(histRes);
-    setLoading(false);
-  }, []);
-
-  useEffect(() => { fetchAll(); }, [fetchAll]);
-  useEffect(() => {
-    setToday(new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
-  }, []);
-
-  const taken   = logs.filter(l => l.status === 'taken').length;
-  const missed  = logs.filter(l => l.status === 'missed').length;
-  const pending = logs.filter(l => l.status === 'pending').length;
-  const total   = logs.length;
-  const wellnessPct = total > 0 ? Math.round((taken / total) * 100) : 0;
-
-  const histTotals = history.reduce((a, d) => ({ t: a.t + d.taken, tot: a.tot + d.total }), { t: 0, tot: 0 });
-  const weekAvg = histTotals.tot > 0 ? Math.round((histTotals.t / histTotals.tot) * 100) : 0;
-
-  const upcoming = [...logs]
-    .filter(l => l.status === 'pending')
-    .sort((a, b) => new Date(a.scheduledTime) - new Date(b.scheduledTime))
-    .slice(0, 4);
-
-  const highRisk = logs.filter(l => l.status === 'missed').slice(0, 5);
-
-  if (loading) {
-    return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '300px' }}>
-        <div style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Loading wellness data…</div>
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      {/* Page header */}
-      <div style={{ marginBottom: '24px' }}>
-        <h1 style={{ fontSize: '22px', fontWeight: '700', color: 'var(--text-primary)', marginBottom: '4px' }}>
-          Wellness Altar
+        <h1 style={{
+          fontSize: 'clamp(36px, 6vw, 64px)', fontWeight: '800',
+          lineHeight: 1.1, letterSpacing: '-0.03em',
+          marginBottom: '20px', maxWidth: '800px', margin: '0 auto 20px',
+        }}>
+          Your Personal
+          <span style={{
+            display: 'block',
+            background: 'linear-gradient(90deg, #60A5FA, #A78BFA)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+          }}>
+            Medicine Tracker
+          </span>
         </h1>
-        <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-          Real-time daily metrics for the troupe — {today}
+
+        <p style={{
+          fontSize: '17px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.7,
+          maxWidth: '560px', margin: '0 auto 40px',
+        }}>
+          The Alchemist Suite brings together schedules, reminders, analytics, and an AI Oracle into one mystical command centre — so you never miss a dose again.
         </p>
-      </div>
 
-      {/* Row 1: Troupe Vitality + Upcoming Rituals */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 280px', gap: '20px', marginBottom: '20px' }}>
-        {/* Troupe Vitality */}
-        <div className="card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-            <span style={{ fontSize: '14px', fontWeight: '600' }}>Troupe Vitality</span>
-            <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', fontSize: '18px' }}>⋯</button>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '16px' }}>
-            <CircularGauge pct={wellnessPct}   color="#2563EB" label="Today's Rate"   sub="today" />
-            <CircularGauge pct={weekAvg}        color="#F59E0B" label="7-Day Average"  sub="week"  />
-            <CircularGauge pct={total > 0 ? Math.round(((total - pending) / total) * 100) : 0}
-              color="#10B981" label="Completed"  sub="doses"  />
-          </div>
-        </div>
-
-        {/* Upcoming Rituals */}
-        <div className="card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <span style={{ fontSize: '14px', fontWeight: '600' }}>Upcoming Rituals</span>
-            <Link href="/schedules" style={{ color: 'var(--text-muted)', display: 'flex' }}>
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-            </Link>
-          </div>
-          {upcoming.length === 0 ? (
-            <p style={{ fontSize: '12px', color: 'var(--text-muted)', textAlign: 'center', padding: '20px 0' }}>
-              All doses accounted for
-            </p>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {upcoming.map(log => (
-                <div key={log._id} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <div style={{
-                    width: '32px', height: '32px', borderRadius: '50%',
-                    background: '#EFF6FF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                    fontSize: '14px',
-                  }}>⚗️</div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: '12px', fontWeight: '600', color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {log.elixirName}
-                    </div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-                      {new Date(log.scheduledTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} · {log.dosage}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-          {upcoming.length > 0 && (
-            <Link href="/calendar" style={{
-              display: 'block', marginTop: '14px', padding: '8px',
-              background: '#F0F9FF', border: '1px solid #BAE6FD',
-              borderRadius: '8px', textAlign: 'center',
-              fontSize: '12px', color: '#0284C7', fontWeight: '600', textDecoration: 'none',
-            }}>
-              View Altar Schedule →
-            </Link>
-          )}
-        </div>
-      </div>
-
-      {/* Row 2: Performer Pulse */}
-      <div className="card" style={{ marginBottom: '20px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ fontSize: '14px', fontWeight: '600' }}>Performer Pulse</span>
-            {missed > 0 && (
-              <span className="badge badge-red" style={{ animation: 'none' }}>
-                ⚠ ADVERSE ALERT
-              </span>
-            )}
-          </div>
-          <Link href="/schedules" style={{ fontSize: '12px', color: 'var(--blue)', textDecoration: 'none' }}>
-            View All Registry →
+        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link href="/auth/register" style={{
+            display: 'inline-flex', alignItems: 'center', gap: '8px',
+            padding: '13px 28px', borderRadius: '10px',
+            background: '#2563EB', color: '#fff',
+            fontSize: '14px', fontWeight: '700', textDecoration: 'none',
+            boxShadow: '0 0 24px rgba(37,99,235,0.4)',
+            transition: 'all 0.15s',
+          }}>
+            Start for Free →
+          </Link>
+          <Link href="/auth/login" style={{
+            display: 'inline-flex', alignItems: 'center', gap: '8px',
+            padding: '13px 28px', borderRadius: '10px',
+            border: '1px solid rgba(255,255,255,0.15)',
+            color: 'rgba(255,255,255,0.8)',
+            fontSize: '14px', fontWeight: '600', textDecoration: 'none',
+          }}>
+            Sign In to Dashboard
           </Link>
         </div>
 
-        {highRisk.length === 0 ? (
-          <div style={{ padding: '20px', textAlign: 'center' }}>
-            <div style={{ fontSize: '24px', marginBottom: '8px' }}>✅</div>
-            <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>No missed doses today — excellent adherence!</p>
-          </div>
-        ) : (
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>ELIXIR</th>
-                <th>ROLE</th>
-                <th>CURRENT PACE</th>
-                <th>RISK LEVEL</th>
-                <th>ACTIONS</th>
-              </tr>
-            </thead>
-            <tbody>
-              {highRisk.map(log => (
-                <tr key={log._id}>
-                  <td>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: '#FEE2E2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>⚗️</div>
-                      <span style={{ fontWeight: '500' }}>{log.elixirName}</span>
-                    </div>
-                  </td>
-                  <td style={{ color: 'var(--text-secondary)', fontSize: '12px' }}>Lead The Steather</td>
-                  <td>
-                    <WiBar pct={0} />
-                  </td>
-                  <td><span className="badge badge-red">CRITICAL</span></td>
-                  <td>
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      <Link href="/logs" style={{ fontSize: '11px', color: '#EF4444', textDecoration: 'none', fontWeight: '600' }}>Heal Race</Link>
-                      <Link href="/fortune-teller" style={{ fontSize: '11px', color: 'var(--blue)', textDecoration: 'none', fontWeight: '600' }}>Consult Mystic</Link>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
+        {/* Hero stats */}
+        <div style={{
+          display: 'flex', gap: '40px', justifyContent: 'center', marginTop: '64px',
+          flexWrap: 'wrap',
+        }}>
+          {[
+            { val: '100%', label: 'Data Isolation' },
+            { val: 'AI',   label: 'Oracle Insights' },
+            { val: '∞',    label: 'Elixirs Tracked' },
+          ].map(s => (
+            <div key={s.label} style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '28px', fontWeight: '800', color: '#60A5FA', lineHeight: 1 }}>{s.val}</div>
+              <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', marginTop: '4px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      {/* Row 3: Quick stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '16px' }}>
-        {[
-          { label: 'Total Scheduled', val: total,   icon: '📋', color: '#2563EB', delta: null },
-          { label: 'Administered',    val: taken,   icon: '✅', color: '#10B981', delta: '+2.4%' },
-          { label: 'Missed',          val: missed,  icon: '❌', color: '#EF4444', delta: missed > 0 ? `${missed} today` : null },
-          { label: 'Pending',         val: pending, icon: '⏳', color: '#F59E0B', delta: null },
-        ].map(s => (
-          <div key={s.label} className="stat-card" style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '20px', marginBottom: '6px' }}>{s.icon}</div>
-            <div className="stat-card-value" style={{ color: s.color }}>{s.val}</div>
-            <div className="stat-card-label">{s.label}</div>
-            {s.delta && (
-              <div className="stat-card-delta" style={{ color: s.color }}>{s.delta}</div>
-            )}
+      {/* ── Features ─────────────────────────────────────────────────────────── */}
+      <section style={{ padding: '80px 5%', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <div style={{ fontSize: '12px', color: '#818CF8', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>
+            FEATURES
           </div>
-        ))}
-      </div>
+          <h2 style={{ fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: '800', letterSpacing: '-0.02em', lineHeight: 1.2, marginBottom: '14px' }}>
+            Everything you need, nothing you don't
+          </h2>
+          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>
+            Six powerful modules working in harmony to keep your health rituals on track.
+          </p>
+        </div>
 
-      {/* Row 4: Fortune Teller quick bar */}
-      <FortuneTellerBar />
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '20px', maxWidth: '1100px', margin: '0 auto',
+        }}>
+          {features.map((f, i) => (
+            <div key={i} style={{
+              background: 'rgba(255,255,255,0.03)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: '14px', padding: '24px',
+              transition: 'border-color 0.2s',
+            }}>
+              <div style={{
+                width: '44px', height: '44px', borderRadius: '10px',
+                background: 'linear-gradient(135deg, rgba(37,99,235,0.3), rgba(124,58,237,0.3))',
+                border: '1px solid rgba(99,102,241,0.3)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '20px', marginBottom: '16px',
+              }}>{f.icon}</div>
+              <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '8px' }}>{f.title}</div>
+              <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', lineHeight: 1.65 }}>{f.desc}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── How it works ─────────────────────────────────────────────────────── */}
+      <section style={{
+        padding: '80px 5%',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        background: 'rgba(37,99,235,0.04)',
+      }}>
+        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <div style={{ fontSize: '12px', color: '#818CF8', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>
+            HOW IT WORKS
+          </div>
+          <h2 style={{ fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: '800', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+            Up and running in minutes
+          </h2>
+        </div>
+
+        <div style={{
+          display: 'flex', gap: '20px', maxWidth: '900px', margin: '0 auto',
+          flexWrap: 'wrap', justifyContent: 'center',
+        }}>
+          {steps.map((s, i) => (
+            <div key={i} style={{
+              flex: '1 1 240px', maxWidth: '280px',
+              background: 'rgba(255,255,255,0.03)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: '14px', padding: '28px 24px',
+              position: 'relative',
+            }}>
+              <div style={{
+                fontSize: '11px', fontWeight: '800', color: '#3B82F6',
+                letterSpacing: '0.06em', marginBottom: '14px',
+              }}>{s.n}</div>
+              <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '8px' }}>{s.title}</div>
+              <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', lineHeight: 1.65 }}>{s.desc}</div>
+              {i < steps.length - 1 && (
+                <div style={{
+                  display: 'none', // hidden on mobile, could show on desktop
+                }} />
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CTA banner ───────────────────────────────────────────────────────── */}
+      <section style={{
+        padding: '80px 5%',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        textAlign: 'center',
+        background: 'radial-gradient(ellipse 60% 60% at 50% 100%, rgba(37,99,235,0.2), transparent)',
+      }}>
+        <h2 style={{ fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: '800', letterSpacing: '-0.02em', marginBottom: '14px' }}>
+          Ready to take control of your health?
+        </h2>
+        <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', maxWidth: '400px', margin: '0 auto 32px', lineHeight: 1.7 }}>
+          Join the Alchemist Suite and transform your medication routine into a seamless ritual.
+        </p>
+        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link href="/auth/register" style={{
+            padding: '13px 32px', borderRadius: '10px',
+            background: '#2563EB', color: '#fff',
+            fontSize: '14px', fontWeight: '700', textDecoration: 'none',
+            boxShadow: '0 0 24px rgba(37,99,235,0.4)',
+          }}>
+            Create Free Account
+          </Link>
+          <Link href="/auth/login" style={{
+            padding: '13px 28px', borderRadius: '10px',
+            border: '1px solid rgba(255,255,255,0.15)',
+            color: 'rgba(255,255,255,0.8)',
+            fontSize: '14px', fontWeight: '600', textDecoration: 'none',
+          }}>
+            I already have an account
+          </Link>
+        </div>
+      </section>
+
+      {/* ── Footer ───────────────────────────────────────────────────────────── */}
+      <footer style={{
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        padding: '24px 5%',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        fontSize: '12px', color: 'rgba(255,255,255,0.3)', flexWrap: 'wrap', gap: '12px',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ fontSize: '16px' }}>⚗️</span>
+          <span>Alchemist Suite &copy; 2024. All rights reserved.</span>
+        </div>
+        <div style={{ display: 'flex', gap: '20px' }}>
+          {['Privacy', 'Terms', 'Support'].map(l => (
+            <a key={l} href="#" style={{ color: 'rgba(255,255,255,0.3)', textDecoration: 'none' }}>{l}</a>
+          ))}
+        </div>
+      </footer>
+
     </div>
   );
 }

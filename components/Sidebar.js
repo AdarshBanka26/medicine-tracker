@@ -5,7 +5,7 @@ import { useSession, signOut } from 'next-auth/react';
 
 const navItems = [
   {
-    href: '/',
+    href: '/dashboard',
     label: 'Wellness',
     icon: (
       <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -60,8 +60,7 @@ export default function Sidebar() {
   const userEmail  = session?.user?.email || '';
   const initials   = userName.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
 
-  const isActive = (href) =>
-    href === '/' ? pathname === '/' : pathname.startsWith(href);
+  const isActive = (href) => pathname === href || (href !== '/dashboard' && pathname.startsWith(href));
 
   async function handleSignOut() {
     await signOut({ redirect: false });
