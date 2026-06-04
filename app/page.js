@@ -1,300 +1,202 @@
 import Link from 'next/link';
 
 const features = [
-  {
-    icon: '⚗️',
-    title: 'Elixir Log',
-    desc: 'Track every medication with dosage, frequency, and schedules. Add, edit, and manage your full prescription history.',
-  },
-  {
-    icon: '🔔',
-    title: 'Smart Reminders',
-    desc: 'Never miss a dose. Browser notifications and email alerts keep every performer on schedule around the clock.',
-  },
-  {
-    icon: '📅',
-    title: 'Sky Calendar',
-    desc: 'Visualise your full dosing calendar by day, week, or month. Sync with Google Calendar for seamless planning.',
-  },
-  {
-    icon: '✦',
-    title: 'Oracle AI Assistant',
-    desc: 'Ask the Gemini-powered Oracle about adherence patterns, missed dose risks, and personalised health insights.',
-  },
-  {
-    icon: '📊',
-    title: 'Wellness Analytics',
-    desc: 'Live adherence gauges, 7-day trend charts, and risk-level alerts give you an instant snapshot of your health.',
-  },
-  {
-    icon: '👥',
-    title: 'Multi-User',
-    desc: 'Each account has a fully isolated workspace. Families, clinics, or teams — everyone sees only their own data.',
-  },
-];
-
-const steps = [
-  { n: '01', title: 'Create Your Account', desc: 'Sign up in seconds with your name and email. No credit card required.' },
-  { n: '02', title: 'Add Your Elixirs',    desc: 'Enter each medication — name, dosage, frequency, and daily times.' },
-  { n: '03', title: 'Stay On Track',       desc: 'Receive reminders, log doses, and let the Oracle surface patterns you might miss.' },
+  { icon: '⚗️', title: 'Elixir Log',         desc: 'Track every medication with dosage, frequency, and full schedule history.' },
+  { icon: '🔔', title: 'Smart Reminders',     desc: 'Browser notifications and email alerts so you never miss a dose.' },
+  { icon: '📅', title: 'Sky Calendar',        desc: 'Visualise your full dosing schedule and sync with Google Calendar.' },
+  { icon: '✦',  title: 'AI Oracle',           desc: 'Gemini-powered insights surface adherence patterns and personalised nudges.' },
+  { icon: '📊', title: 'Celestial Analytics', desc: 'Live gauges, 7-day trends, and risk-level alerts at a glance.' },
+  { icon: '👥', title: 'Multi-User',          desc: 'Fully isolated workspaces — each account sees only their own data.' },
 ];
 
 export default function LandingPage() {
   return (
-    <div style={{ minHeight: '100vh', background: '#0F172A', color: '#fff', fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>
+    <div style={{ minHeight: '100vh', background: '#F8FAFF', color: '#0F172A', fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>
 
-      {/* ── Navbar ────────────────────────────────────────────────────────────── */}
+      {/* ── Navbar ── */}
       <nav style={{
         position: 'sticky', top: 0, zIndex: 50,
-        borderBottom: '1px solid rgba(255,255,255,0.07)',
-        background: 'rgba(15,23,42,0.85)',
-        backdropFilter: 'blur(12px)',
-        padding: '0 5%',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        background: 'rgba(248,250,255,0.9)', backdropFilter: 'blur(12px)',
+        borderBottom: '1px solid #E8EDFF',
+        padding: '0 6%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         height: '60px',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div style={{
-            width: '32px', height: '32px', borderRadius: '8px',
+            width: '30px', height: '30px', borderRadius: '8px',
             background: 'linear-gradient(135deg,#2563EB,#7C3AED)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px',
           }}>⚗️</div>
-          <span style={{ fontSize: '15px', fontWeight: '700', letterSpacing: '-0.01em' }}>Alchemist Suite</span>
+          <span style={{ fontSize: '14px', fontWeight: '700', color: '#0F172A' }}>Alchemist Suite</span>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+          {['Features', 'How it Works', 'Pricing'].map(l => (
+            <a key={l} href="#" style={{ fontSize: '13px', color: '#475569', textDecoration: 'none', fontWeight: '500' }}>{l}</a>
+          ))}
+        </div>
+
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <Link href="/auth/login" style={{
-            padding: '8px 18px', borderRadius: '8px',
-            border: '1px solid rgba(255,255,255,0.15)',
-            color: 'rgba(255,255,255,0.85)', fontSize: '13px', fontWeight: '500',
-            textDecoration: 'none', transition: 'all 0.15s',
-          }}>
-            Sign In
-          </Link>
+            padding: '7px 16px', borderRadius: '8px', border: '1.5px solid #E8EDFF',
+            color: '#475569', fontSize: '13px', fontWeight: '600', textDecoration: 'none',
+            background: '#fff',
+          }}>Sign In</Link>
           <Link href="/auth/register" style={{
-            padding: '8px 18px', borderRadius: '8px',
-            background: '#2563EB', border: '1px solid #2563EB',
-            color: '#fff', fontSize: '13px', fontWeight: '600',
-            textDecoration: 'none',
-          }}>
-            Get Started
-          </Link>
+            padding: '7px 16px', borderRadius: '8px',
+            background: '#2563EB', color: '#fff',
+            fontSize: '13px', fontWeight: '600', textDecoration: 'none',
+            boxShadow: '0 2px 8px rgba(37,99,235,0.35)',
+          }}>Get Started →</Link>
         </div>
       </nav>
 
-      {/* ── Hero ─────────────────────────────────────────────────────────────── */}
-      <section style={{
-        padding: '100px 5% 80px',
-        textAlign: 'center',
-        background: 'radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37,99,235,0.25), transparent)',
-      }}>
-        {/* Badge */}
+      {/* ── Hero ── */}
+      <section style={{ padding: '80px 6% 60px', textAlign: 'center', maxWidth: '1100px', margin: '0 auto' }}>
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: '6px',
-          background: 'rgba(37,99,235,0.15)', border: '1px solid rgba(37,99,235,0.35)',
-          borderRadius: '20px', padding: '5px 14px', marginBottom: '28px',
-          fontSize: '12px', color: '#93C5FD', fontWeight: '600', letterSpacing: '0.04em',
+          background: '#EFF6FF', border: '1px solid #BFDBFE',
+          borderRadius: '20px', padding: '5px 14px', marginBottom: '24px',
+          fontSize: '11px', color: '#2563EB', fontWeight: '700', letterSpacing: '0.05em',
         }}>
-          <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#60A5FA', display: 'inline-block' }} />
-          NOW WITH AI-POWERED ADHERENCE INSIGHTS
+          ✦ NOW WITH GEMINI AI ORACLE INSIGHTS
         </div>
 
         <h1 style={{
-          fontSize: 'clamp(36px, 6vw, 64px)', fontWeight: '800',
-          lineHeight: 1.1, letterSpacing: '-0.03em',
-          marginBottom: '20px', maxWidth: '800px', margin: '0 auto 20px',
+          fontSize: 'clamp(38px, 6vw, 66px)', fontWeight: '800',
+          lineHeight: 1.08, letterSpacing: '-0.03em',
+          color: '#0F172A', marginBottom: '20px',
         }}>
-          Your Personal
-          <span style={{
-            display: 'block',
-            background: 'linear-gradient(90deg, #60A5FA, #A78BFA)',
-            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-          }}>
-            Medicine Tracker
+          Master the Elixirs<br />
+          <span style={{ background: 'linear-gradient(90deg,#2563EB,#7C3AED)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            of the Arena.
           </span>
         </h1>
 
-        <p style={{
-          fontSize: '17px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.7,
-          maxWidth: '560px', margin: '0 auto 40px',
-        }}>
-          The Alchemist Suite brings together schedules, reminders, analytics, and an AI Oracle into one mystical command centre — so you never miss a dose again.
+        <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, maxWidth: '520px', margin: '0 auto 36px' }}>
+          The Alchemist Suite combines schedules, smart reminders, AI-powered analytics, and a multi-user vault — so your health rituals never slip.
         </p>
 
-        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '60px' }}>
           <Link href="/auth/register" style={{
-            display: 'inline-flex', alignItems: 'center', gap: '8px',
-            padding: '13px 28px', borderRadius: '10px',
-            background: '#2563EB', color: '#fff',
+            padding: '12px 28px', borderRadius: '10px', background: '#2563EB', color: '#fff',
             fontSize: '14px', fontWeight: '700', textDecoration: 'none',
-            boxShadow: '0 0 24px rgba(37,99,235,0.4)',
-            transition: 'all 0.15s',
-          }}>
-            Start for Free →
-          </Link>
+            boxShadow: '0 4px 16px rgba(37,99,235,0.4)',
+          }}>Start Free →</Link>
           <Link href="/auth/login" style={{
-            display: 'inline-flex', alignItems: 'center', gap: '8px',
-            padding: '13px 28px', borderRadius: '10px',
-            border: '1px solid rgba(255,255,255,0.15)',
-            color: 'rgba(255,255,255,0.8)',
-            fontSize: '14px', fontWeight: '600', textDecoration: 'none',
-          }}>
-            Sign In to Dashboard
-          </Link>
+            padding: '12px 24px', borderRadius: '10px',
+            border: '1.5px solid #E8EDFF', background: '#fff',
+            color: '#475569', fontSize: '14px', fontWeight: '600', textDecoration: 'none',
+          }}>Open Pillora Dashboard ⚡</Link>
         </div>
 
-        {/* Hero stats */}
+        {/* App mockup */}
         <div style={{
-          display: 'flex', gap: '40px', justifyContent: 'center', marginTop: '64px',
-          flexWrap: 'wrap',
+          background: '#fff', border: '1.5px solid #E8EDFF', borderRadius: '16px',
+          padding: '20px', boxShadow: '0 8px 40px rgba(37,99,235,0.1)',
+          maxWidth: '800px', margin: '0 auto',
         }}>
-          {[
-            { val: '100%', label: 'Data Isolation' },
-            { val: 'AI',   label: 'Oracle Insights' },
-            { val: '∞',    label: 'Elixirs Tracked' },
-          ].map(s => (
-            <div key={s.label} style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '28px', fontWeight: '800', color: '#60A5FA', lineHeight: 1 }}>{s.val}</div>
-              <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', marginTop: '4px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{s.label}</div>
+          {/* Fake browser bar */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '16px' }}>
+            {['#EF4444','#F59E0B','#10B981'].map(c => (
+              <div key={c} style={{ width: '10px', height: '10px', borderRadius: '50%', background: c }} />
+            ))}
+            <div style={{ flex: 1, height: '20px', background: '#F1F5F9', borderRadius: '6px', marginLeft: '8px' }} />
+          </div>
+          {/* Mock dashboard preview */}
+          <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: '12px', height: '200px' }}>
+            <div style={{ background: '#F8FAFF', borderRadius: '10px', padding: '12px' }}>
+              <div style={{ height: '8px', background: '#DBEAFE', borderRadius: '4px', marginBottom: '8px' }} />
+              {['#2563EB','#E2E8F0','#E2E8F0','#E2E8F0','#E2E8F0'].map((bg,i) => (
+                <div key={i} style={{ height: '28px', background: bg, borderRadius: '6px', marginBottom: '4px', opacity: i === 0 ? 1 : 0.6 }} />
+              ))}
             </div>
-          ))}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div style={{ height: '10px', background: '#DBEAFE', borderRadius: '4px', width: '40%' }} />
+              <div style={{ flex: 1, display: 'flex', gap: '6px', alignItems: 'flex-end' }}>
+                {[55,70,45,80,65,90,72,60].map((h,i) => (
+                  <div key={i} style={{ flex: 1, height: `${h}%`, background: i === 5 ? '#2563EB' : '#DBEAFE', borderRadius: '4px 4px 0 0' }} />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ── Features ─────────────────────────────────────────────────────────── */}
-      <section style={{ padding: '80px 5%', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <div style={{ fontSize: '12px', color: '#818CF8', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>
-            FEATURES
-          </div>
-          <h2 style={{ fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: '800', letterSpacing: '-0.02em', lineHeight: 1.2, marginBottom: '14px' }}>
-            Everything you need, nothing you don't
+      {/* ── Features ── */}
+      <section style={{ padding: '70px 6%', background: '#fff', borderTop: '1px solid #E8EDFF', borderBottom: '1px solid #E8EDFF' }}>
+        <div style={{ textAlign: 'center', marginBottom: '48px', maxWidth: '1100px', margin: '0 auto 48px' }}>
+          <div style={{ fontSize: '11px', color: '#2563EB', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '10px' }}>ARCANE CAPABILITIES</div>
+          <h2 style={{ fontSize: 'clamp(24px,4vw,38px)', fontWeight: '800', letterSpacing: '-0.02em', color: '#0F172A' }}>
+            A mystical toolset that maps the gap between<br />
+            <span style={{ color: '#2563EB' }}>your goals and the treatments below</span>
           </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>
-            Six powerful modules working in harmony to keep your health rituals on track.
-          </p>
         </div>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '20px', maxWidth: '1100px', margin: '0 auto',
-        }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '16px', maxWidth: '1100px', margin: '0 auto' }}>
           {features.map((f, i) => (
             <div key={i} style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '14px', padding: '24px',
-              transition: 'border-color 0.2s',
+              background: '#F8FAFF', border: '1.5px solid #E8EDFF', borderRadius: '14px', padding: '22px',
+              transition: 'border-color 0.2s, box-shadow 0.2s',
             }}>
               <div style={{
-                width: '44px', height: '44px', borderRadius: '10px',
-                background: 'linear-gradient(135deg, rgba(37,99,235,0.3), rgba(124,58,237,0.3))',
-                border: '1px solid rgba(99,102,241,0.3)',
+                width: '40px', height: '40px', borderRadius: '10px',
+                background: 'linear-gradient(135deg,#EFF6FF,#EDE9FE)',
+                border: '1px solid #DBEAFE',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '20px', marginBottom: '16px',
+                fontSize: '18px', marginBottom: '14px',
               }}>{f.icon}</div>
-              <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '8px' }}>{f.title}</div>
-              <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', lineHeight: 1.65 }}>{f.desc}</div>
+              <div style={{ fontSize: '14px', fontWeight: '700', marginBottom: '6px', color: '#0F172A' }}>{f.title}</div>
+              <div style={{ fontSize: '12px', color: '#64748B', lineHeight: 1.65 }}>{f.desc}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── How it works ─────────────────────────────────────────────────────── */}
+      {/* ── CTA banner ── */}
       <section style={{
-        padding: '80px 5%',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        background: 'rgba(37,99,235,0.04)',
+        padding: '70px 6%', textAlign: 'center',
+        background: 'linear-gradient(135deg,#1E3A8A 0%,#2563EB 50%,#7C3AED 100%)',
+        color: '#fff',
       }}>
-        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <div style={{ fontSize: '12px', color: '#818CF8', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>
-            HOW IT WORKS
-          </div>
-          <h2 style={{ fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: '800', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
-            Up and running in minutes
-          </h2>
-        </div>
-
-        <div style={{
-          display: 'flex', gap: '20px', maxWidth: '900px', margin: '0 auto',
-          flexWrap: 'wrap', justifyContent: 'center',
-        }}>
-          {steps.map((s, i) => (
-            <div key={i} style={{
-              flex: '1 1 240px', maxWidth: '280px',
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '14px', padding: '28px 24px',
-              position: 'relative',
-            }}>
-              <div style={{
-                fontSize: '11px', fontWeight: '800', color: '#3B82F6',
-                letterSpacing: '0.06em', marginBottom: '14px',
-              }}>{s.n}</div>
-              <div style={{ fontSize: '15px', fontWeight: '700', marginBottom: '8px' }}>{s.title}</div>
-              <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', lineHeight: 1.65 }}>{s.desc}</div>
-              {i < steps.length - 1 && (
-                <div style={{
-                  display: 'none', // hidden on mobile, could show on desktop
-                }} />
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── CTA banner ───────────────────────────────────────────────────────── */}
-      <section style={{
-        padding: '80px 5%',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        textAlign: 'center',
-        background: 'radial-gradient(ellipse 60% 60% at 50% 100%, rgba(37,99,235,0.2), transparent)',
-      }}>
-        <h2 style={{ fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: '800', letterSpacing: '-0.02em', marginBottom: '14px' }}>
-          Ready to take control of your health?
+        <div style={{ fontSize: '22px', marginBottom: '12px' }}>✦</div>
+        <h2 style={{ fontSize: 'clamp(24px,4vw,38px)', fontWeight: '800', letterSpacing: '-0.02em', marginBottom: '12px' }}>
+          Step into the Arena
         </h2>
-        <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', maxWidth: '400px', margin: '0 auto 32px', lineHeight: 1.7 }}>
-          Join the Alchemist Suite and transform your medication routine into a seamless ritual.
+        <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', maxWidth: '420px', margin: '0 auto 28px', lineHeight: 1.7 }}>
+          Your transformation from a concerned practitioner to a bonded health guardian begins with a single click. Join the Celestial Alchemist and don't let Pillora Flaws be.
         </p>
-        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/auth/register" style={{
-            padding: '13px 32px', borderRadius: '10px',
-            background: '#2563EB', color: '#fff',
-            fontSize: '14px', fontWeight: '700', textDecoration: 'none',
-            boxShadow: '0 0 24px rgba(37,99,235,0.4)',
-          }}>
-            Create Free Account
-          </Link>
-          <Link href="/auth/login" style={{
-            padding: '13px 28px', borderRadius: '10px',
-            border: '1px solid rgba(255,255,255,0.15)',
-            color: 'rgba(255,255,255,0.8)',
-            fontSize: '14px', fontWeight: '600', textDecoration: 'none',
-          }}>
-            I already have an account
-          </Link>
-        </div>
+        <Link href="/auth/register" style={{
+          display: 'inline-flex', alignItems: 'center', gap: '6px',
+          padding: '12px 28px', borderRadius: '10px',
+          background: 'rgba(255,255,255,0.15)', border: '1.5px solid rgba(255,255,255,0.3)',
+          color: '#fff', fontSize: '14px', fontWeight: '700', textDecoration: 'none',
+          backdropFilter: 'blur(4px)',
+        }}>
+          Learn More →
+        </Link>
       </section>
 
-      {/* ── Footer ───────────────────────────────────────────────────────────── */}
+      {/* ── Footer ── */}
       <footer style={{
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        padding: '24px 5%',
+        borderTop: '1px solid #E8EDFF', padding: '20px 6%', background: '#fff',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        fontSize: '12px', color: 'rgba(255,255,255,0.3)', flexWrap: 'wrap', gap: '12px',
+        fontSize: '12px', color: '#94A3B8', flexWrap: 'wrap', gap: '10px',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '16px' }}>⚗️</span>
-          <span>Alchemist Suite &copy; 2024. All rights reserved.</span>
+          <span>⚗️</span>
+          <span>© 1892 Mystical Circus & Co.</span>
         </div>
         <div style={{ display: 'flex', gap: '20px' }}>
-          {['Privacy', 'Terms', 'Support'].map(l => (
-            <a key={l} href="#" style={{ color: 'rgba(255,255,255,0.3)', textDecoration: 'none' }}>{l}</a>
+          {['Alchemy Safety', 'Privacy Scroll', 'Terms of Alchemy'].map(l => (
+            <a key={l} href="#" style={{ color: '#94A3B8', textDecoration: 'none' }}>{l}</a>
           ))}
         </div>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <Link href="/auth/login" style={{ fontSize: '12px', color: '#2563EB', fontWeight: '600', textDecoration: 'none' }}>Sign In</Link>
+          <span style={{ color: '#E8EDFF' }}>|</span>
+          <Link href="/auth/register" style={{ fontSize: '12px', color: '#2563EB', fontWeight: '600', textDecoration: 'none' }}>Sign Up</Link>
+        </div>
       </footer>
-
     </div>
   );
 }
