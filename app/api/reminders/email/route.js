@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { auth } from '@/auth';
 import dbConnect from '@/lib/mongodb';
 import AdherenceLog from '@/lib/models/AdherenceLog';
 import { sendMail, buildEmailHtml } from '@/lib/mailer';
@@ -18,13 +19,17 @@ function statusBadge(status) {
 // Body: { type: 'daily-digest' | 'pending-now' }
 export async function POST(request) {
   try {
+    const session = await auth();
+    const userId  = session?.user?.id;
+    if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
     await dbConnect();
     const { type = 'daily-digest' } = await request.json().catch(() => ({}));
 
-    await seedTodayLogs();
+    await seedTodayLogs(userId);
 
     const today = new Date().toISOString().slice(0, 10);
-    const logs  = await AdherenceLog.find({ date: today }).sort({ scheduledTime: 1 });
+    const logs  = await AdherenceLog.find({ userId, date: today }).sort({ scheduledTime: 1 });
 
     if (logs.length === 0) {
       return NextResponse.json({ message: 'No logs for today — nothing to send.' });
@@ -35,7 +40,6 @@ export async function POST(request) {
     const pending = logs.filter(l => l.status === 'pending').length;
     const rate    = Math.round((taken / logs.length) * 100);
 
-    // ── Pending-now: only send logs due within the next 30 min ─────────────
     let targetLogs = logs;
     let subjectLine = `⚗️ Grand Grimoire — Daily Digest for ${today}`;
 
@@ -51,7 +55,6 @@ export async function POST(request) {
       subjectLine = `⚗️ Upcoming Elixirs — ${targetLogs.length} dose(s) due soon`;
     }
 
-    // ── Build rows ──────────────────────────────────────────────────────────
     const rows = targetLogs.map(log => `
       <tr>
         <td style="padding:8px 12px;border-bottom:1px solid rgba(76,29,149,.3);">

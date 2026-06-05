@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { auth } from '@/auth';
 import dbConnect from '@/lib/mongodb';
 import AdherenceLog from '@/lib/models/AdherenceLog';
 import Schedule from '@/lib/models/Schedule';
@@ -18,10 +19,13 @@ function dateStr(date) {
 
 export async function GET(request) {
   try {
+    const session = await auth();
+    const userId  = session?.user?.id;
+    if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
     await dbConnect();
 
     const { searchParams } = new URL(request.url);
-    // FullCalendar sends ISO strings; fall back to 30-day window
     const rangeStart = searchParams.get('start')
       ? new Date(searchParams.get('start'))
       : (() => { const d = new Date(); d.setDate(d.getDate() - 14); return d; })();
@@ -33,8 +37,9 @@ export async function GET(request) {
     const endStr   = dateStr(rangeEnd);
     const today    = dateStr(new Date());
 
-    // ── 1. Logged events (have an AdherenceLog entry) ─────────────────────
+    // ── 1. Logged events (user-scoped) ───────────────────────────────────────
     const logs = await AdherenceLog.find({
+      userId,
       date: { $gte: startStr, $lte: endStr },
     }).lean();
 
@@ -61,28 +66,31 @@ export async function GET(request) {
       };
     });
 
-    // Build a set of (scheduleId + date) pairs that already have a log
     const loggedKeys = new Set(logs.map((l) => `${l.scheduleId}-${l.date}`));
 
-    // ── 2. Future ghost events from active schedules (no log yet) ─────────
-    const schedules = await Schedule.find({ isActive: true, frequency: { $ne: 'as-needed' } }).lean();
-    const ghostEvents = [];
+    // ── 2. Future ghost events (user-scoped active schedules) ────────────────
+    const schedules = await Schedule.find({
+      userId,
+      isActive: true,
+      frequency: { $ne: 'as-needed' },
+    }).lean();
 
+    const ghostEvents = [];
     const cursor = new Date(Math.max(rangeStart.getTime(), new Date().getTime()));
     cursor.setHours(0, 0, 0, 0);
     const limit = new Date(rangeEnd);
 
     while (cursor <= limit) {
       const ds = dateStr(cursor);
-      if (ds <= today) { cursor.setDate(cursor.getDate() + 1); continue; } // only future
+      if (ds <= today) { cursor.setDate(cursor.getDate() + 1); continue; }
 
       for (const sched of schedules) {
         for (const timeStr of sched.times) {
           const key = `${sched._id}-${ds}`;
-          if (loggedKeys.has(key)) continue; // already logged
+          if (loggedKeys.has(key)) continue;
 
           const [h, m] = timeStr.split(':').map(Number);
-          const start = new Date(cursor);
+          const start  = new Date(cursor);
           start.setHours(h, m, 0, 0);
           const end = new Date(start.getTime() + 15 * 60_000);
 

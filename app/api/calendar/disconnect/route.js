@@ -1,15 +1,19 @@
 import { NextResponse } from 'next/server';
+import { auth } from '@/auth';
 import { getAuthorizedClient, deleteTokens, getOAuthClient } from '@/lib/googleCalendar';
 
 export async function POST() {
   try {
-    const auth = await getAuthorizedClient();
+    const session = await auth();
+    const userId  = session?.user?.id;
+    if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    if (auth) {
-      // Revoke the token on Google's side
+    const authClient = await getAuthorizedClient(userId);
+
+    if (authClient) {
       const client = getOAuthClient();
       try {
-        const tokens = auth.credentials;
+        const tokens = authClient.credentials;
         if (tokens?.access_token) {
           await client.revokeToken(tokens.access_token);
         }
@@ -18,7 +22,7 @@ export async function POST() {
       }
     }
 
-    await deleteTokens();
+    await deleteTokens(userId);
     return NextResponse.json({ disconnected: true });
   } catch (err) {
     console.error('Disconnect error:', err);

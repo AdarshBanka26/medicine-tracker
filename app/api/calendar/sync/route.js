@@ -1,27 +1,29 @@
 import { NextResponse } from 'next/server';
+import { auth } from '@/auth';
 import dbConnect from '@/lib/mongodb';
 import AdherenceLog from '@/lib/models/AdherenceLog';
 import { getAuthorizedClient, syncLogsToCalendar, isConnected } from '@/lib/googleCalendar';
 import { seedTodayLogs } from '@/lib/seedLogs';
 
-// Syncs today's + next-7-days logs to Google Calendar.
 export async function POST() {
   try {
+    const session = await auth();
+    const userId  = session?.user?.id;
+    if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
     await dbConnect();
 
-    if (!(await isConnected())) {
+    if (!(await isConnected(userId))) {
       return NextResponse.json({ error: 'Google Calendar not connected' }, { status: 401 });
     }
 
-    const auth = await getAuthorizedClient();
-    if (!auth) {
+    const authClient = await getAuthorizedClient(userId);
+    if (!authClient) {
       return NextResponse.json({ error: 'Could not get authorized client' }, { status: 401 });
     }
 
-    // Seed today's logs so we have entries to sync
-    await seedTodayLogs();
+    await seedTodayLogs(userId);
 
-    // Sync the next 7 days (today included)
     const dates = [];
     for (let i = 0; i < 7; i++) {
       const d = new Date();
@@ -29,8 +31,8 @@ export async function POST() {
       dates.push(d.toISOString().slice(0, 10));
     }
 
-    const logs = await AdherenceLog.find({ date: { $in: dates } });
-    const results = await syncLogsToCalendar(auth, logs);
+    const logs    = await AdherenceLog.find({ userId, date: { $in: dates } });
+    const results = await syncLogsToCalendar(authClient, logs, userId);
 
     return NextResponse.json({ synced: results.length, details: results });
   } catch (err) {

@@ -25,17 +25,17 @@ export async function POST(request) {
   if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   await dbConnect();
-  const body = await request.json();
+  const body     = await request.json();
   const schedule = await Schedule.create({ ...body, userId });
 
   await seedTodayLogs(userId);
 
-  if (await isConnected()) {
-    const authClient = await getAuthorizedClient();
+  if (await isConnected(userId)) {
+    const authClient = await getAuthorizedClient(userId);
     if (authClient) {
       const today = new Date().toISOString().slice(0, 10);
-      const logs = await AdherenceLog.find({ userId, scheduleId: schedule._id, date: today });
-      syncLogsToCalendar(authClient, logs).catch((err) =>
+      const logs  = await AdherenceLog.find({ userId, scheduleId: schedule._id, date: today });
+      syncLogsToCalendar(authClient, logs, userId).catch((err) =>
         console.error('Calendar sync after schedule create:', err.message)
       );
     }

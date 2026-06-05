@@ -10,7 +10,7 @@ export async function PUT(request, { params }) {
   if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   await dbConnect();
-  const { id }   = await params;
+  const { id }     = await params;
   const { status } = await request.json();
 
   if (!['taken', 'missed', 'pending'].includes(status)) {
@@ -18,13 +18,13 @@ export async function PUT(request, { params }) {
   }
 
   const update = { status, takenAt: status === 'taken' ? new Date() : null };
-  const log = await AdherenceLog.findOneAndUpdate({ _id: id, userId }, update, { new: true });
+  const log    = await AdherenceLog.findOneAndUpdate({ _id: id, userId }, update, { new: true });
   if (!log) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
-  if (log.calendarEventId && (await isConnected())) {
-    const authClient = await getAuthorizedClient();
+  if (log.calendarEventId && (await isConnected(userId))) {
+    const authClient = await getAuthorizedClient(userId);
     if (authClient) {
-      updateCalendarEvent(authClient, log.calendarEventId, log).catch((err) =>
+      updateCalendarEvent(authClient, log.calendarEventId, log, userId).catch((err) =>
         console.error('Calendar update after status change:', err.message)
       );
     }
