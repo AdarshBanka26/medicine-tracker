@@ -47,7 +47,7 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="sidebar-logo">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div className="sidebar-logo-mark">⚗️</div>
+          <img src="/logo.svg" alt="Alchemist Suite" style={{ width: '32px', height: '32px', flexShrink: 0 }} />
           <div>
             <div className="sidebar-brand">Alchemist Suite</div>
             <div className="sidebar-tagline">Medication Tracker</div>

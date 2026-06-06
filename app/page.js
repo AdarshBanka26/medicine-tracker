@@ -22,11 +22,7 @@ export default function LandingPage() {
         height: '60px',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{
-            width: '30px', height: '30px', borderRadius: '8px',
-            background: 'linear-gradient(135deg,#2563EB,#7C3AED)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px',
-          }}>⚗️</div>
+          <img src="/logo.svg" alt="Alchemist Suite" style={{ width: '32px', height: '32px' }} />
           <span style={{ fontSize: '14px', fontWeight: '700', color: '#0F172A' }}>Alchemist Suite</span>
         </div>
 

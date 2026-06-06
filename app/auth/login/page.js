@@ -42,12 +42,7 @@ export default function LoginPage() {
       }}>
         <div>
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '48px', textDecoration: 'none' }}>
-            <div style={{
-              width: '36px', height: '36px', borderRadius: '10px', flexShrink: 0,
-              background: 'linear-gradient(135deg,#2563EB,#7C3AED)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px',
-              boxShadow: '0 4px 12px rgba(37,99,235,0.3)',
-            }}>⚗️</div>
+            <img src="/logo.svg" alt="Alchemist Suite" style={{ width: '40px', height: '40px', flexShrink: 0 }} />
             <span style={{ fontSize: '16px', fontWeight: '800', color: '#0F172A' }}>Alchemist Suite</span>
           </Link>
 
