@@ -125,7 +125,7 @@ export default function CalendarPage() {
           Sky Calendar
         </h1>
         <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-          All elixir schedules and adherence history in one view
+          All medication schedules and adherence history in one view
         </p>
       </div>
 
@@ -153,7 +153,7 @@ export default function CalendarPage() {
           nowIndicator
           dayMaxEvents={3}
           moreLinkText={n => `+${n} more`}
-          noEventsText="No elixirs scheduled — add one from the Elixir Log."
+          noEventsText="No medications scheduled — add one from Medications."
           eventTimeFormat={{ hour: '2-digit', minute: '2-digit', meridiem: 'short' }}
         />
       </div>

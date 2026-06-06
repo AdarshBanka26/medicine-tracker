@@ -1,12 +1,12 @@
 import Link from 'next/link';
 
 const features = [
-  { icon: '⚗️', title: 'Elixir Log',         desc: 'Track every medication with dosage, frequency, and full schedule history.' },
-  { icon: '🔔', title: 'Smart Reminders',     desc: 'Browser notifications and email alerts so you never miss a dose.' },
-  { icon: '📅', title: 'Sky Calendar',        desc: 'Visualise your full dosing schedule and sync with Google Calendar.' },
-  { icon: '✦',  title: 'AI Oracle',           desc: 'Gemini-powered insights surface adherence patterns and personalised nudges.' },
-  { icon: '📊', title: 'Celestial Analytics', desc: 'Live gauges, 7-day trends, and risk-level alerts at a glance.' },
-  { icon: '👥', title: 'Multi-User',          desc: 'Fully isolated workspaces — each account sees only their own data.' },
+  { icon: '⚗️', title: 'Medication Log',  desc: 'Track every medication with dosage, frequency, and full schedule history.' },
+  { icon: '🔔', title: 'Smart Reminders', desc: 'Browser notifications and email alerts so you never miss a dose.' },
+  { icon: '📅', title: 'Calendar',        desc: 'Visualise your full dosing schedule and sync with Google Calendar.' },
+  { icon: '✦',  title: 'AI Assistant',    desc: 'Gemini-powered insights surface adherence patterns and personalised nudges.' },
+  { icon: '📊', title: 'Analytics',       desc: 'Live gauges, 7-day trends, and risk-level alerts at a glance.' },
+  { icon: '👥', title: 'Multi-User',      desc: 'Fully isolated workspaces — each account sees only their own data.' },
 ];
 
 export default function LandingPage() {
@@ -120,8 +120,8 @@ export default function LandingPage() {
         <div style={{ textAlign: 'center', marginBottom: '48px', maxWidth: '1100px', margin: '0 auto 48px' }}>
           <div style={{ fontSize: '11px', color: '#2563EB', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '10px' }}>ARCANE CAPABILITIES</div>
           <h2 style={{ fontSize: 'clamp(24px,4vw,38px)', fontWeight: '800', letterSpacing: '-0.02em', color: '#0F172A' }}>
-            A mystical toolset that maps the gap between<br />
-            <span style={{ color: '#2563EB' }}>your goals and the treatments below</span>
+            Everything you need to manage your medications<br />
+            <span style={{ color: '#2563EB' }}>and stay on schedule</span>
           </h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '16px', maxWidth: '1100px', margin: '0 auto' }}>
@@ -154,7 +154,7 @@ export default function LandingPage() {
           Step into the Arena
         </h2>
         <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', maxWidth: '420px', margin: '0 auto 28px', lineHeight: 1.7 }}>
-          Your transformation from a concerned practitioner to a bonded health guardian begins with a single click. Join the Celestial Alchemist and don't let Pillora Flaws be.
+          Create your account and start tracking your medications in minutes. AI-powered insights help you build lasting adherence habits.
         </p>
         <Link href="/auth/register" style={{
           display: 'inline-flex', alignItems: 'center', gap: '6px',

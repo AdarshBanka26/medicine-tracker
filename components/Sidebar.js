@@ -31,7 +31,7 @@ export default function Sidebar() {
   const router = useRouter();
   const { data: session } = useSession();
 
-  const userName  = session?.user?.name  || 'Alchemist';
+  const userName  = session?.user?.name  || 'User';
   const userEmail = session?.user?.email || '';
   const initials  = userName.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
 
@@ -50,7 +50,7 @@ export default function Sidebar() {
           <div className="sidebar-logo-mark">⚗️</div>
           <div>
             <div className="sidebar-brand">Alchemist Suite</div>
-            <div className="sidebar-tagline">Mystical Management</div>
+            <div className="sidebar-tagline">Medication Tracker</div>
           </div>
         </div>
       </div>

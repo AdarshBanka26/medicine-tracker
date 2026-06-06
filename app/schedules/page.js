@@ -8,12 +8,12 @@ const FREQ_LABEL = {
   weekly: 'Weekly', 'as-needed': 'As Needed',
 };
 
-const ELIXIR_COLORS = ['#DBEAFE', '#D1FAE5', '#FEF3C7', '#EDE9FE', '#FCE7F3', '#FEE2E2'];
-const ELIXIR_TEXT   = ['#1D4ED8', '#065F46', '#92400E', '#5B21B6', '#9D174D', '#991B1B'];
+const ICON_COLORS = ['#DBEAFE', '#D1FAE5', '#FEF3C7', '#EDE9FE', '#FCE7F3', '#FEE2E2'];
+const ICON_TEXT   = ['#1D4ED8', '#065F46', '#92400E', '#5B21B6', '#9D174D', '#991B1B'];
 
-function ElixirIcon({ index }) {
-  const bg   = ELIXIR_COLORS[index % ELIXIR_COLORS.length];
-  const text = ELIXIR_TEXT[index % ELIXIR_TEXT.length];
+function MedIcon({ index }) {
+  const bg   = ICON_COLORS[index % ICON_COLORS.length];
+  const text = ICON_TEXT[index % ICON_TEXT.length];
   return (
     <div style={{
       width: '32px', height: '32px', borderRadius: '8px',
@@ -29,7 +29,7 @@ function StatusBadge({ isActive }) {
     : <span className="badge badge-gray">INACTIVE</span>;
 }
 
-export default function ElixirLogPage() {
+export default function MedicationsPage() {
   const router = useRouter();
   const [schedules, setSchedules] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -49,7 +49,7 @@ export default function ElixirLogPage() {
   }, []);
 
   async function handleDelete(id, name) {
-    if (!confirm(`Remove "${name}" from the Grimoire?`)) return;
+    if (!confirm(`Remove "${name}"?`)) return;
     await fetch(`/api/schedules/${id}`, { method: 'DELETE' });
     setSchedules(prev => prev.filter(s => s._id !== id));
   }
@@ -60,54 +60,39 @@ export default function ElixirLogPage() {
     return true;
   });
 
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-  const pageItems  = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
-
-  const activeCount   = schedules.filter(s => s.isActive).length;
-  const activePct     = schedules.length > 0 ? Math.round((activeCount / schedules.length) * 100) : 0;
+  const totalPages  = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const pageItems   = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const activeCount = schedules.filter(s => s.isActive).length;
+  const activePct   = schedules.length > 0 ? Math.round((activeCount / schedules.length) * 100) : 0;
 
   return (
     <div>
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
         <div>
-          <h1 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '2px' }}>Grand Elixir Log</h1>
+          <h1 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '2px' }}>Medications</h1>
           <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-            Precision monitoring for metabolic enhancement and alchemical synchronization.
+            Track and manage your medication schedules.
           </p>
         </div>
-        <div style={{ display: 'flex', gap: '8px' }}>
-          <button className="btn-outline" style={{ fontSize: '12px' }}>
-            <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-            Export Archive
-          </button>
-          <button className="btn-outline" style={{ fontSize: '12px' }}>
-            <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            View History
-          </button>
-          <Link href="/schedules/new" className="btn-primary" style={{ textDecoration: 'none', fontSize: '13px' }}>
-            + New Entry
-          </Link>
-        </div>
+        <Link href="/schedules/new" className="btn-primary" style={{ textDecoration: 'none', fontSize: '13px' }}>
+          + New Medication
+        </Link>
       </div>
 
       {/* Stat cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px', marginBottom: '20px' }}>
         <div className="stat-card">
           <div className="stat-card-value">{schedules.length.toLocaleString()}</div>
-          <div className="stat-card-label">Total Elixirs</div>
+          <div className="stat-card-label">Total</div>
           <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '4px' }}>All time entries</div>
         </div>
         <div className="stat-card">
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
             <div className="stat-card-value" style={{ color: '#10B981' }}>{activePct}%</div>
-            <div style={{ fontSize: '11px', color: '#10B981', fontWeight: '600' }}>Active Pathway</div>
+            <div style={{ fontSize: '11px', color: '#10B981', fontWeight: '600' }}>Active</div>
           </div>
-          <div className="stat-card-label">Adherence Rate</div>
+          <div className="stat-card-label">Active Rate</div>
           <div style={{ marginTop: '8px', height: '4px', background: '#E5E7EB', borderRadius: '2px', overflow: 'hidden' }}>
             <div style={{ height: '100%', background: '#10B981', borderRadius: '2px', width: `${activePct}%` }} />
           </div>
@@ -119,12 +104,12 @@ export default function ElixirLogPage() {
             </div>
             <div>
               <div style={{ fontSize: '13px', fontWeight: '700', color: activeCount > 0 ? '#10B981' : 'var(--text-muted)' }}>
-                {activeCount > 0 ? 'Optimal' : 'No Data'}
+                {activeCount > 0 ? 'Tracking' : 'No Data'}
               </div>
-              <div className="stat-card-label" style={{ margin: 0 }}>Sync Walks</div>
+              <div className="stat-card-label" style={{ margin: 0 }}>Status</div>
             </div>
           </div>
-          <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '6px' }}>{activeCount} active elixirs tracked</div>
+          <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '6px' }}>{activeCount} active medications</div>
         </div>
       </div>
 
@@ -133,12 +118,8 @@ export default function ElixirLogPage() {
         <span style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>Filter:</span>
         {['all', 'active', 'inactive'].map(f => (
           <button key={f} onClick={() => { setFilterStatus(f); setPage(1); }} style={{
-            padding: '5px 14px',
-            borderRadius: '20px',
-            border: '1px solid',
-            fontSize: '12px',
-            cursor: 'pointer',
-            fontWeight: '500',
+            padding: '5px 14px', borderRadius: '20px', border: '1px solid',
+            fontSize: '12px', cursor: 'pointer', fontWeight: '500',
             background: filterStatus === f ? '#EFF6FF' : '#fff',
             borderColor: filterStatus === f ? 'var(--blue)' : 'var(--border)',
             color: filterStatus === f ? 'var(--blue)' : 'var(--text-secondary)',
@@ -150,42 +131,31 @@ export default function ElixirLogPage() {
 
       {/* Table card */}
       <div className="card" style={{ padding: 0, marginBottom: '20px', marginTop: '12px', overflow: 'hidden' }}>
-        {/* Table header */}
         <div style={{
-          padding: '14px 20px',
-          borderBottom: '1px solid var(--border)',
+          padding: '14px 20px', borderBottom: '1px solid var(--border)',
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         }}>
           <span style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-primary)' }}>
             Active Prescriptions
           </span>
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', fontSize: '12px', padding: '2px 6px', borderRadius: '4px' }}>
-              ≡ Filter
-            </button>
-            <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', fontSize: '16px', padding: '2px 4px', borderRadius: '4px' }}>
-              ⋯
-            </button>
-          </div>
         </div>
 
         {loading ? (
           <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)' }}>
-            Loading elixir log…
+            Loading medications…
           </div>
         ) : filtered.length === 0 ? (
           <div style={{ padding: '48px', textAlign: 'center' }}>
             <div style={{ fontSize: '32px', marginBottom: '12px' }}>📋</div>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>No elixirs recorded yet.</p>
-            <Link href="/schedules/new" className="btn-primary" style={{ textDecoration: 'none' }}>+ New Entry</Link>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>No medications added yet.</p>
+            <Link href="/schedules/new" className="btn-primary" style={{ textDecoration: 'none' }}>+ New Medication</Link>
           </div>
         ) : (
           <>
             <table className="data-table">
               <thead>
                 <tr>
-                  <th>ELIXIR NAME</th>
-                  <th>PERFORMER</th>
+                  <th>MEDICATION</th>
                   <th>DOSAGE</th>
                   <th>FREQUENCY</th>
                   <th>STATUS</th>
@@ -197,7 +167,7 @@ export default function ElixirLogPage() {
                   <tr key={s._id}>
                     <td>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <ElixirIcon index={idx} />
+                        <MedIcon index={idx} />
                         <div>
                           <div style={{ fontWeight: '500', color: 'var(--text-primary)' }}>{s.elixirName}</div>
                           <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
@@ -206,7 +176,6 @@ export default function ElixirLogPage() {
                         </div>
                       </div>
                     </td>
-                    <td style={{ color: 'var(--text-secondary)', fontSize: '12px' }}>Grand Alchemist</td>
                     <td style={{ color: 'var(--blue)', fontWeight: '600' }}>{s.dosage}</td>
                     <td style={{ color: 'var(--text-secondary)' }}>{FREQ_LABEL[s.frequency] || s.frequency}</td>
                     <td><StatusBadge isActive={s.isActive} /></td>
@@ -229,13 +198,9 @@ export default function ElixirLogPage() {
 
             {/* Pagination */}
             <div style={{
-              padding: '12px 20px',
-              borderTop: '1px solid var(--border)',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              fontSize: '12px',
-              color: 'var(--text-secondary)',
+              padding: '12px 20px', borderTop: '1px solid var(--border)',
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              fontSize: '12px', color: 'var(--text-secondary)',
             }}>
               <span>Showing {((page - 1) * PAGE_SIZE) + 1}–{Math.min(page * PAGE_SIZE, filtered.length)} of {filtered.length} entries</span>
               <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
@@ -250,17 +215,13 @@ export default function ElixirLogPage() {
             </div>
 
             {filtered.length > PAGE_SIZE && (
-              <div style={{
-                padding: '10px',
-                borderTop: '1px solid var(--border)',
-                textAlign: 'center',
-              }}>
+              <div style={{ padding: '10px', borderTop: '1px solid var(--border)', textAlign: 'center' }}>
                 <button
                   onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                   disabled={page === totalPages}
                   style={{ background: 'none', border: 'none', cursor: page === totalPages ? 'not-allowed' : 'pointer', fontSize: '12px', color: 'var(--blue)', fontWeight: '600' }}
                 >
-                  View {Math.max(0, filtered.length - page * PAGE_SIZE)} More Elixirs →
+                  View {Math.max(0, filtered.length - page * PAGE_SIZE)} More →
                 </button>
               </div>
             )}
@@ -270,7 +231,7 @@ export default function ElixirLogPage() {
 
       {/* Bottom row: AI Insight + Compliance */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 220px', gap: '16px' }}>
-        {/* Mystic Insight */}
+        {/* AI Insight */}
         <div className="card" style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
           <div style={{
             width: '80px', height: '80px', borderRadius: '10px', flexShrink: 0,
@@ -279,34 +240,23 @@ export default function ElixirLogPage() {
           }}>🔮</div>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
-              <span style={{ color: 'var(--blue)', fontSize: '13px', fontWeight: '700' }}>✦ Mystic Insight</span>
+              <span style={{ color: 'var(--blue)', fontSize: '13px', fontWeight: '700' }}>✦ AI Insight</span>
               <span className="badge badge-blue" style={{ fontSize: '10px' }}>AI</span>
             </div>
             <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '12px' }}>
-              {prediction?.nudgeMessage || 'The oracle is gathering patterns from your adherence history. Keep logging elixirs to unlock personalized insights.'}
+              {prediction?.nudgeMessage || 'AI is gathering your adherence patterns. Keep logging medications to unlock personalised insights.'}
             </p>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <Link href="/fortune-teller" className="btn-primary" style={{ textDecoration: 'none', fontSize: '12px' }}>
-                Apply Recommendation
-              </Link>
-              <Link href="/fortune-teller" style={{ fontSize: '12px', color: 'var(--blue)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                Read Detailed Analysis →
-              </Link>
-            </div>
+            <Link href="/fortune-teller" className="btn-primary" style={{ textDecoration: 'none', fontSize: '12px' }}>
+              Ask AI Assistant →
+            </Link>
           </div>
         </div>
 
         {/* Today's Compliance */}
         <div style={{
-          background: 'var(--blue-navy)',
-          borderRadius: '12px',
-          padding: '20px',
-          color: '#fff',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          textAlign: 'center',
+          background: 'var(--blue-navy)', borderRadius: '12px', padding: '20px',
+          color: '#fff', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center', textAlign: 'center',
         }}>
           <div style={{ fontSize: '11px', color: '#93C5FD', letterSpacing: '0.08em', marginBottom: '8px', textTransform: 'uppercase' }}>
             Today's Compliance
@@ -318,15 +268,15 @@ export default function ElixirLogPage() {
             <div style={{ height: '100%', background: '#60A5FA', borderRadius: '2px', width: `${activePct}%` }} />
           </div>
           <div style={{ fontSize: '11px', color: '#93C5FD', marginTop: '6px' }}>
-            {activeCount} active elixirs
+            {activeCount} active medications
           </div>
           <Link href="/schedules/new" style={{
             marginTop: '14px', padding: '8px 16px',
             background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.25)',
             borderRadius: '8px', color: '#fff', fontSize: '12px', fontWeight: '600',
-            textDecoration: 'none', transition: 'all 0.15s',
+            textDecoration: 'none',
           }}>
-            Adjust Schedule
+            Add Medication
           </Link>
         </div>
       </div>

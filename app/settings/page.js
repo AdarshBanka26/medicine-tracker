@@ -128,7 +128,7 @@ export default function SettingsPage() {
         />
         <StatusRow
           label="Active Schedules"
-          value={scheduleCount !== null ? `${scheduleCount} schedule(s) in Grimoire` : 'Loading…'}
+          value={scheduleCount !== null ? `${scheduleCount} schedule(s)` : 'Loading…'}
           ok={scheduleCount !== null}
         />
         <StatusRow

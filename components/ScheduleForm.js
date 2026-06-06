@@ -42,7 +42,7 @@ export default function ScheduleForm({ initialData = null }) {
   async function handleSubmit(e) {
     e.preventDefault();
     setError('');
-    if (!form.elixirName.trim()) { setError('Elixir name is required.'); return; }
+    if (!form.elixirName.trim()) { setError('Medication name is required.'); return; }
     if (!form.dosage.trim())     { setError('Dosage is required.'); return; }
     setSaving(true);
     try {
@@ -65,7 +65,7 @@ export default function ScheduleForm({ initialData = null }) {
         </div>
       )}
 
-      <Field label="Elixir Name" required>
+      <Field label="Medication Name" required>
         <input className="field-input" type="text" placeholder="e.g. Morning Vitamin C"
           value={form.elixirName} onChange={e => set('elixirName', e.target.value)} />
       </Field>
@@ -130,7 +130,7 @@ export default function ScheduleForm({ initialData = null }) {
 
       <div style={{ display: 'flex', gap: '10px' }}>
         <button type="submit" className="btn-primary" disabled={saving}>
-          {saving ? 'Saving…' : isEdit ? 'Update Elixir' : '+ Add to Grimoire'}
+          {saving ? 'Saving…' : isEdit ? 'Update Medication' : '+ Add Medication'}
         </button>
         <button type="button" className="btn-outline" onClick={() => router.back()}>Cancel</button>
       </div>

@@ -4,8 +4,8 @@ import { auth } from '@/auth';
 import AppShell from '@/components/AppShell';
 
 export const metadata = {
-  title: "Alchemist Suite — Grand Grimoire",
-  description: 'The mystical medicine tracker for circus performers',
+  title: "Alchemist Suite",
+  description: 'Medication tracker with AI-powered adherence insights',
 };
 
 export default async function RootLayout({ children }) {

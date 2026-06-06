@@ -147,10 +147,10 @@ export default function Dashboard() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
         <div>
           <h1 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '2px' }}>
-            Alchemist Dashboard
+            Dashboard
           </h1>
           <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-            Overseeing the vitalities of your Celestial Circus &amp; Co.
+            Here's your medication overview for today.
           </p>
         </div>
         {clock && (
@@ -193,15 +193,15 @@ export default function Dashboard() {
           {/* The Celestial Ensemble */}
           <div className="card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-              <div style={{ fontSize: '14px', fontWeight: '700' }}>The Celestial Ensemble</div>
+              <div style={{ fontSize: '14px', fontWeight: '700' }}>Today's Medications</div>
               <Link href="/schedules" style={{ fontSize: '12px', color: 'var(--blue)', textDecoration: 'none', fontWeight: '600' }}>
-                View All Elixirs →
+                View All →
               </Link>
             </div>
             {ensembleLogs.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '24px', color: 'var(--text-muted)', fontSize: '13px' }}>
                 No doses scheduled yet.{' '}
-                <Link href="/schedules/new" style={{ color: 'var(--blue)', textDecoration: 'none', fontWeight: '600' }}>Add your first elixir →</Link>
+                <Link href="/schedules/new" style={{ color: 'var(--blue)', textDecoration: 'none', fontWeight: '600' }}>Add your first medication →</Link>
               </div>
             ) : (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(140px,1fr))', gap: '12px' }}>
@@ -214,7 +214,7 @@ export default function Dashboard() {
         {/* Right column — Crier Alerts */}
         <div className="card" style={{ height: 'fit-content' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <div style={{ fontSize: '14px', fontWeight: '700' }}>Crier Alerts</div>
+            <div style={{ fontSize: '14px', fontWeight: '700' }}>Alerts</div>
             {missed > 0 && (
               <span style={{ fontSize: '10px', background: '#FEE2E2', color: '#991B1B', borderRadius: '20px', padding: '2px 8px', fontWeight: '700' }}>
                 {missed} Irregular
@@ -264,9 +264,9 @@ export default function Dashboard() {
       }}>
         <div>
           <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>✦</div>
-          <div style={{ fontSize: '18px', fontWeight: '800', color: '#fff', marginBottom: '6px' }}>Master of Potions</div>
+          <div style={{ fontSize: '18px', fontWeight: '800', color: '#fff', marginBottom: '6px' }}>Stay on Track</div>
           <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.7)', maxWidth: '400px', lineHeight: 1.6 }}>
-            Transform mundane herbs and celestial dust into vials of circus ozing wonder. Consult the Oracle for deeper insights.
+            Add your medications and let AI-powered insights help you maintain perfect adherence every day.
           </p>
         </div>
         <div style={{ display: 'flex', gap: '10px' }}>
@@ -274,12 +274,12 @@ export default function Dashboard() {
             padding: '10px 20px', borderRadius: '10px',
             background: 'rgba(255,255,255,0.15)', border: '1.5px solid rgba(255,255,255,0.3)',
             color: '#fff', fontSize: '13px', fontWeight: '700', textDecoration: 'none',
-          }}>Brew New Elixir</Link>
+          }}>New Medication</Link>
           <Link href="/fortune-teller" style={{
             padding: '10px 20px', borderRadius: '10px',
             background: '#fff', color: '#2563EB',
             fontSize: '13px', fontWeight: '700', textDecoration: 'none',
-          }}>Ask the Oracle</Link>
+          }}>Ask AI</Link>
         </div>
       </div>
     </div>

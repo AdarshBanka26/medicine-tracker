@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 const SUGGESTED = [
   'What pills do I need to take today?',
   'Did I miss any doses yesterday?',
-  'Which elixir do I miss most often?',
+  'Which medication do I miss most often?',
   'What is my wellness rate this week?',
 ];
 
@@ -74,7 +74,7 @@ export default function ChatBot() {
       if (!res.ok) throw new Error(data.error);
       setMessages([...next, { role: 'model', text: data.text }]);
     } catch (err) {
-      setError(err.message || 'Oracle unavailable. Check your GEMINI_API_KEY.');
+      setError(err.message || 'AI unavailable. Check your GEMINI_API_KEY.');
     } finally { setLoading(false); }
   }
 
@@ -151,7 +151,7 @@ export default function ChatBot() {
             {messages.length === 0 && (
               <div>
                 <p style={{ fontSize: '12px', color: 'var(--text-secondary)', textAlign: 'center', marginBottom: '12px', lineHeight: 1.5 }}>
-                  Ask me anything about your elixir schedule or adherence history.
+                  Ask me anything about your medication schedule or adherence history.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   {SUGGESTED.map(q => (

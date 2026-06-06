@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
 
 /* ── Countdown timer ───────────────────────────────────────────────────────── */
 function Countdown({ scheduledTime, status }) {
@@ -166,7 +165,7 @@ function NudgeCard({ log, onAction }) {
       </div>
       <p style={{ fontSize: '11px', color: 'var(--text-secondary)', marginBottom: '10px', lineHeight: 1.5 }}>
         {log.status === 'missed'
-          ? 'This elixir was missed. Take it now if appropriate, or mark as skipped.'
+          ? 'This medication was missed. Take it now if appropriate, or mark as skipped.'
           : `Due at ${time}. Prepare your dose for optimal absorption.`}
       </p>
       <button
@@ -182,7 +181,7 @@ function NudgeCard({ log, onAction }) {
 }
 
 /* ── Page ──────────────────────────────────────────────────────────────────── */
-export default function CircusCrierPage() {
+export default function RemindersPage() {
   const today = new Date().toISOString().slice(0, 10);
 
   const [logs, setLogs] = useState([]);
@@ -243,16 +242,16 @@ export default function CircusCrierPage() {
     <div>
       {/* Header */}
       <div style={{ marginBottom: '20px' }}>
-        <h1 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '4px' }}>Chant Master</h1>
+        <h1 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '4px' }}>Reminders</h1>
         <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-          Manage your active resonant alerts and celestial notifications with clinical precision.
+          Manage your dose alerts and notification preferences.
         </p>
       </div>
 
       {/* Toggle row */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '20px', flexWrap: 'wrap' }}>
-        <ToggleItem label="Browser Chant" sub="Real-time mystic overlays" on />
-        <ToggleItem label="Sky Scroll" sub="External astral push alerts" on={false} />
+        <ToggleItem label="Browser Notifications" sub="Real-time dose alerts" on />
+        <ToggleItem label="Push Notifications" sub="External push alerts" on={false} />
       </div>
 
       {/* Controls bar */}
@@ -310,11 +309,11 @@ export default function CircusCrierPage() {
 
       {/* Two-col layout */}
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 260px', gap: '20px' }}>
-        {/* Left: Active Chants + Archive */}
+        {/* Left: Active Alerts + Archive */}
         <div style={{ minWidth: 0 }}>
           <div style={{ marginBottom: '24px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
-              <span style={{ fontSize: '14px', fontWeight: '600' }}>Active Chants</span>
+              <span style={{ fontSize: '14px', fontWeight: '600' }}>Active Alerts</span>
               {alertLogs.length > 0 && (
                 <span style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: '400' }}>
                   ({alertLogs.length})
@@ -326,12 +325,12 @@ export default function CircusCrierPage() {
             </div>
 
             {loading ? (
-              <p style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Loading chants…</p>
+              <p style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Loading alerts…</p>
             ) : alertLogs.length === 0 ? (
               <div className="card" style={{ textAlign: 'center', padding: '32px' }}>
                 <div style={{ fontSize: '28px', marginBottom: '8px' }}>✅</div>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '13px' }}>
-                  {isToday ? 'No active alerts — all elixirs accounted for.' : 'No alerts for this date.'}
+                  {isToday ? 'No active alerts — all medications accounted for.' : 'No alerts for this date.'}
                 </p>
               </div>
             ) : (
@@ -356,7 +355,7 @@ export default function CircusCrierPage() {
                 <table className="data-table">
                   <thead>
                     <tr>
-                      <th>INCIDENT</th>
+                      <th>MEDICATION</th>
                       <th>DOSAGE</th>
                       <th>DELAY</th>
                       <th>STATUS</th>
@@ -392,12 +391,11 @@ export default function CircusCrierPage() {
           )}
         </div>
 
-        {/* Right: Mystic Nudges + Master Upgrade */}
-        <div style={{ minWidth: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          {/* Mystic Nudges */}
+        {/* Right: AI Nudges */}
+        <div style={{ minWidth: 0 }}>
           <div className="card">
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '16px' }}>
-              <span style={{ fontSize: '14px', fontWeight: '600', color: 'var(--blue)' }}>✦ Mystic Nudges</span>
+              <span style={{ fontSize: '14px', fontWeight: '600', color: 'var(--blue)' }}>✦ AI Nudges</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {alertLogs.length === 0 ? (
@@ -410,39 +408,6 @@ export default function CircusCrierPage() {
                 ))
               )}
             </div>
-          </div>
-
-          {/* Master Upgrade CTA */}
-          <div style={{
-            background: 'linear-gradient(135deg, #1E3A8A, #7C3AED)',
-            borderRadius: '12px',
-            padding: '20px',
-            color: '#fff',
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-              <div style={{
-                width: '28px', height: '28px', borderRadius: '6px',
-                background: 'rgba(255,255,255,0.2)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '14px',
-              }}>⭐</div>
-              <div>
-                <div style={{ fontSize: '13px', fontWeight: '700' }}>Master Upgrade</div>
-                <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.6)' }}>Unlock premium chatting</div>
-              </div>
-            </div>
-            <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.75)', lineHeight: 1.5, marginBottom: '14px' }}>
-              Unlock predictive chatting with our Essence package. Advanced pattern analysis and real-time alerts.
-            </p>
-            <Link href="/fortune-teller" style={{
-              display: 'block', textAlign: 'center',
-              background: 'rgba(255,255,255,0.2)', border: '1px solid rgba(255,255,255,0.3)',
-              borderRadius: '8px', padding: '8px',
-              color: '#fff', fontSize: '12px', fontWeight: '600',
-              textDecoration: 'none',
-            }}>
-              Upgrade Now →
-            </Link>
           </div>
         </div>
       </div>
