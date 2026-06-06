@@ -4,19 +4,19 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 
 const PAGE_CONFIG = {
-  '/dashboard':      { title: 'Dashboard',    section: 'Dashboard' },
-  '/schedules':      { title: 'Inventory',    section: 'Inventory' },
-  '/schedules/new':  { title: 'New Elixir',   section: 'Inventory' },
-  '/logs':           { title: 'Town Crier',   section: 'Archive' },
-  '/calendar':       { title: 'Calendar',     section: 'Calendar' },
-  '/fortune-teller': { title: 'Oracle',       section: 'Oracle' },
-  '/settings':       { title: 'Settings',     section: 'Settings' },
+  '/dashboard':      { title: 'Dashboard',       section: 'Dashboard' },
+  '/schedules':      { title: 'Medications',     section: 'Medications' },
+  '/schedules/new':  { title: 'New Medication',  section: 'Medications' },
+  '/logs':           { title: 'Reminders',       section: 'Reminders' },
+  '/calendar':       { title: 'Calendar',        section: 'Calendar' },
+  '/fortune-teller': { title: 'AI Assistant',    section: 'AI Assistant' },
+  '/settings':       { title: 'Settings',        section: 'Settings' },
 };
 
 const NAV_TABS = [
   { href: '/dashboard', label: 'Dashboard' },
-  { href: '/schedules', label: 'Inventory' },
-  { href: '/logs',      label: 'Archive' },
+  { href: '/schedules', label: 'Medications' },
+  { href: '/logs',      label: 'Reminders' },
 ];
 
 export default function TopNav() {
@@ -24,7 +24,7 @@ export default function TopNav() {
   const { data: session } = useSession();
 
   const cfg = PAGE_CONFIG[pathname] ??
-    (pathname.includes('/edit') ? { title: 'Edit Elixir', section: 'Inventory' } : { title: 'Alchemist Suite', section: '' });
+    (pathname.includes('/edit') ? { title: 'Edit Medication', section: 'Medications' } : { title: 'Alchemist Suite', section: '' });
 
   const initials = (session?.user?.name || 'MA').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
 
@@ -78,7 +78,7 @@ export default function TopNav() {
           fontSize: '12px', fontWeight: '700', textDecoration: 'none',
           boxShadow: '0 2px 6px rgba(37,99,235,0.3)',
         }}>
-          + New Elixir
+          + New Medication
         </Link>
 
         <IconBtn title="Notifications">

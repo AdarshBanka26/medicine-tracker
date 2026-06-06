@@ -51,16 +51,16 @@ export default function LoginPage() {
           </div>
 
           <h2 style={{ fontSize: '22px', fontWeight: '800', color: '#0F172A', lineHeight: 1.25, marginBottom: '12px' }}>
-            Your professional gateway to the arcane arts of health and productivity.
+            Your personal medicine tracker with AI-powered insights.
           </h2>
           <p style={{ fontSize: '13px', color: '#64748B', lineHeight: 1.7 }}>
-            Track medications, consult the AI Oracle, and maintain perfect adherence — all in one mystical command centre.
+            Track medications, get AI insights, and never miss a dose — all in one place.
           </p>
         </div>
 
         <div>
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '24px' }}>
-            {[{ icon: '⚗️', label: 'Elixir Tracking' }, { icon: '✦', label: 'AI Oracle Insights' }].map(f => (
+            {[{ icon: '⚗️', label: 'Medication Tracking' }, { icon: '✦', label: 'AI Insights' }].map(f => (
               <div key={f.label} style={{
                 display: 'flex', alignItems: 'center', gap: '6px',
                 background: '#F1F5FF', borderRadius: '8px', padding: '8px 12px',
@@ -85,8 +85,8 @@ export default function LoginPage() {
           {/* Header + tabs */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '28px' }}>
             <div>
-              <div style={{ fontSize: '16px', fontWeight: '800', color: '#0F172A' }}>Alchemist Portal</div>
-              <div style={{ fontSize: '12px', color: '#64748B', marginTop: '2px' }}>Welcome back, Master Alchemist</div>
+              <div style={{ fontSize: '16px', fontWeight: '800', color: '#0F172A' }}>Sign In</div>
+              <div style={{ fontSize: '12px', color: '#64748B', marginTop: '2px' }}>Welcome back</div>
             </div>
             <div style={{ display: 'flex', gap: '3px', background: '#F1F5FF', borderRadius: '8px', padding: '3px' }}>
               {[['signin','Sign In'],['signup','Sign Up']].map(([t, label]) => (
@@ -103,18 +103,18 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit}>
             {/* Email */}
             <div style={{ marginBottom: '14px' }}>
-              <label style={labelStyle}>Manager Email</label>
+              <label style={labelStyle}>Email</label>
               <div style={{ position: 'relative' }}>
                 <span style={iconStyle}>@</span>
                 <input type="email" required value={form.email}
                   onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                  placeholder="alchemist@realm.com" style={inputStyle} />
+                  placeholder="you@example.com" style={inputStyle} />
               </div>
             </div>
 
             {/* Password */}
-            <div style={{ marginBottom: '8px' }}>
-              <label style={labelStyle}>Secret Sign</label>
+            <div style={{ marginBottom: '20px' }}>
+              <label style={labelStyle}>Password</label>
               <div style={{ position: 'relative' }}>
                 <span style={iconStyle}>🔒</span>
                 <input type="password" required value={form.password}
@@ -123,12 +123,10 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <div style={{ marginBottom: '20px' }} />
-
             {error && <ErrorBox>{error}</ErrorBox>}
 
             <button type="submit" disabled={loading} style={submitStyle(loading)}>
-              {loading ? 'Opening Portal…' : 'Open the Alchemist Portal ⚡'}
+              {loading ? 'Signing in…' : 'Sign In'}
             </button>
           </form>
 
@@ -157,4 +155,3 @@ function ErrorBox({ children }) {
     </div>
   );
 }
-

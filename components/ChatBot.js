@@ -136,7 +136,7 @@ export default function ChatBot() {
               color: '#fff', fontSize: '14px', fontWeight: '700',
             }}>✦</div>
             <div>
-              <div style={{ fontSize: '13px', fontWeight: '700', color: '#fff' }}>Fortune Teller</div>
+              <div style={{ fontSize: '13px', fontWeight: '700', color: '#fff' }}>AI Assistant</div>
               <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)' }}>Powered by Gemini AI</div>
             </div>
             <div style={{
@@ -188,7 +188,7 @@ export default function ChatBot() {
             <input
               ref={inputRef}
               className="field-input"
-              placeholder="Ask the Fortune Teller…"
+              placeholder="Ask the AI Assistant…"
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && input.trim() && !loading) { e.preventDefault(); sendMessage(input.trim()); } }}

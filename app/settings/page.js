@@ -218,11 +218,11 @@ export default function SettingsPage() {
       <Section title="Quick Navigation" emoji="🧭">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
           {[
-            { href: '/dashboard',      label: '💊 Wellness Dashboard' },
-            { href: '/schedules',      label: '⚗️ Elixir Log' },
-            { href: '/logs',           label: '🔔 Circus Crier' },
-            { href: '/calendar',       label: '📅 Sky Calendar' },
-            { href: '/fortune-teller', label: '✦ Fortune Teller' },
+            { href: '/dashboard',      label: '💊 Dashboard' },
+            { href: '/schedules',      label: '⚗️ Medications' },
+            { href: '/logs',           label: '🔔 Reminders' },
+            { href: '/calendar',       label: '📅 Calendar' },
+            { href: '/fortune-teller', label: '✦ AI Assistant' },
           ].map(({ href, label }) => (
             <Link key={href} href={href} style={{
               display: 'block', padding: '10px 14px', borderRadius: '8px',

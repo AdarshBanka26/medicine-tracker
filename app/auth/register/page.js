@@ -55,16 +55,16 @@ export default function RegisterPage() {
           </div>
 
           <h2 style={{ fontSize: '22px', fontWeight: '800', color: '#0F172A', lineHeight: 1.25, marginBottom: '12px' }}>
-            Begin your alchemical journey today.
+            Start tracking your medications today.
           </h2>
           <p style={{ fontSize: '13px', color: '#64748B', lineHeight: 1.7 }}>
-            Create your isolated workspace, add your elixirs, and let the Oracle guide your adherence from day one.
+            Create your account, add your medications, and let AI guide your adherence from day one.
           </p>
         </div>
 
         <div>
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '24px' }}>
-            {[{ icon: '⚗️', label: 'Elixir Tracking' }, { icon: '✦', label: 'AI Oracle Insights' }].map(f => (
+            {[{ icon: '⚗️', label: 'Medication Tracking' }, { icon: '✦', label: 'AI Insights' }].map(f => (
               <div key={f.label} style={{
                 display: 'flex', alignItems: 'center', gap: '6px',
                 background: '#F1F5FF', borderRadius: '8px', padding: '8px 12px',
@@ -89,7 +89,7 @@ export default function RegisterPage() {
           {/* Header + tabs */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
             <div>
-              <div style={{ fontSize: '16px', fontWeight: '800', color: '#0F172A' }}>Alchemist Portal</div>
+              <div style={{ fontSize: '16px', fontWeight: '800', color: '#0F172A' }}>Create Account</div>
               <div style={{ fontSize: '12px', color: '#64748B', marginTop: '2px' }}>Create your account</div>
             </div>
             <div style={{ display: 'flex', gap: '3px', background: '#F1F5FF', borderRadius: '8px', padding: '3px' }}>
@@ -106,10 +106,10 @@ export default function RegisterPage() {
 
           <form onSubmit={handleSubmit}>
             {[
-              { key: 'name',     label: 'Full Name',     type: 'text',     placeholder: 'Master Alchemist',  icon: '✦' },
-              { key: 'email',    label: 'Manager Email', type: 'email',    placeholder: 'alchemist@realm.com', icon: '@' },
-              { key: 'password', label: 'Secret Sign',   type: 'password', placeholder: '8+ characters',     icon: '🔒' },
-              { key: 'confirm',  label: 'Confirm Sign',  type: 'password', placeholder: '••••••••',           icon: '🔒' },
+              { key: 'name',     label: 'Full Name',        type: 'text',     placeholder: 'Your name',      icon: '✦' },
+              { key: 'email',    label: 'Email',            type: 'email',    placeholder: 'you@example.com', icon: '@' },
+              { key: 'password', label: 'Password',         type: 'password', placeholder: '8+ characters',  icon: '🔒' },
+              { key: 'confirm',  label: 'Confirm Password', type: 'password', placeholder: '••••••••',        icon: '🔒' },
             ].map(({ key, label, type, placeholder, icon }) => (
               <div key={key} style={{ marginBottom: '12px' }}>
                 <label style={labelStyle}>{label}</label>
@@ -128,7 +128,7 @@ export default function RegisterPage() {
             {error && <ErrorBox>{error}</ErrorBox>}
 
             <button type="submit" disabled={loading} style={{ ...submitStyle(loading), marginTop: '8px' }}>
-              {loading ? 'Creating account…' : 'Open the Alchemist Portal ⚡'}
+              {loading ? 'Creating account…' : 'Create Account'}
             </button>
           </form>
 
@@ -157,4 +157,3 @@ function ErrorBox({ children }) {
     </div>
   );
 }
-
