@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 /* Shared layout constants — must match register/page.js exactly */
 const LEFT_W   = '340px';
@@ -40,7 +41,7 @@ export default function LoginPage() {
         overflowY: 'auto',
       }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '48px' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '48px', textDecoration: 'none' }}>
             <div style={{
               width: '36px', height: '36px', borderRadius: '10px', flexShrink: 0,
               background: 'linear-gradient(135deg,#2563EB,#7C3AED)',
@@ -48,7 +49,7 @@ export default function LoginPage() {
               boxShadow: '0 4px 12px rgba(37,99,235,0.3)',
             }}>⚗️</div>
             <span style={{ fontSize: '16px', fontWeight: '800', color: '#0F172A' }}>Alchemist Suite</span>
-          </div>
+          </Link>
 
           <h2 style={{ fontSize: '22px', fontWeight: '800', color: '#0F172A', lineHeight: 1.25, marginBottom: '12px' }}>
             Your personal medicine tracker with AI-powered insights.
