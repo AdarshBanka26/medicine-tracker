@@ -28,12 +28,6 @@ export default function AppShell({ children }) {
         </div>
         <footer className="app-footer">
           <span>Alchemist Suite &copy; 2024 Circus Alchemist Corp. All rights reserved.</span>
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <a href="#">Legal</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Support</a>
-            <a href="#">Documentation</a>
-          </div>
         </footer>
       </div>
       <ChatBot />

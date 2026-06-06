@@ -30,12 +30,6 @@ export default function LandingPage() {
           <span style={{ fontSize: '14px', fontWeight: '700', color: '#0F172A' }}>Alchemist Suite</span>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          {['Features', 'How it Works', 'Pricing'].map(l => (
-            <a key={l} href="#" style={{ fontSize: '13px', color: '#475569', textDecoration: 'none', fontWeight: '500' }}>{l}</a>
-          ))}
-        </div>
-
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <Link href="/auth/login" style={{
             padding: '7px 16px', borderRadius: '8px', border: '1.5px solid #E8EDFF',
@@ -82,12 +76,12 @@ export default function LandingPage() {
             padding: '12px 28px', borderRadius: '10px', background: '#2563EB', color: '#fff',
             fontSize: '14px', fontWeight: '700', textDecoration: 'none',
             boxShadow: '0 4px 16px rgba(37,99,235,0.4)',
-          }}>Start Free →</Link>
+          }}>Create Free Account →</Link>
           <Link href="/auth/login" style={{
             padding: '12px 24px', borderRadius: '10px',
             border: '1.5px solid #E8EDFF', background: '#fff',
             color: '#475569', fontSize: '14px', fontWeight: '600', textDecoration: 'none',
-          }}>Open Pillora Dashboard ⚡</Link>
+          }}>Sign In ⚡</Link>
         </div>
 
         {/* App mockup */}
@@ -96,14 +90,12 @@ export default function LandingPage() {
           padding: '20px', boxShadow: '0 8px 40px rgba(37,99,235,0.1)',
           maxWidth: '800px', margin: '0 auto',
         }}>
-          {/* Fake browser bar */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '16px' }}>
             {['#EF4444','#F59E0B','#10B981'].map(c => (
               <div key={c} style={{ width: '10px', height: '10px', borderRadius: '50%', background: c }} />
             ))}
             <div style={{ flex: 1, height: '20px', background: '#F1F5F9', borderRadius: '6px', marginLeft: '8px' }} />
           </div>
-          {/* Mock dashboard preview */}
           <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: '12px', height: '200px' }}>
             <div style={{ background: '#F8FAFF', borderRadius: '10px', padding: '12px' }}>
               <div style={{ height: '8px', background: '#DBEAFE', borderRadius: '4px', marginBottom: '8px' }} />
@@ -136,7 +128,6 @@ export default function LandingPage() {
           {features.map((f, i) => (
             <div key={i} style={{
               background: '#F8FAFF', border: '1.5px solid #E8EDFF', borderRadius: '14px', padding: '22px',
-              transition: 'border-color 0.2s, box-shadow 0.2s',
             }}>
               <div style={{
                 width: '40px', height: '40px', borderRadius: '10px',
@@ -172,7 +163,7 @@ export default function LandingPage() {
           color: '#fff', fontSize: '14px', fontWeight: '700', textDecoration: 'none',
           backdropFilter: 'blur(4px)',
         }}>
-          Learn More →
+          Create Account →
         </Link>
       </section>
 
@@ -185,11 +176,6 @@ export default function LandingPage() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span>⚗️</span>
           <span>© 1892 Mystical Circus & Co.</span>
-        </div>
-        <div style={{ display: 'flex', gap: '20px' }}>
-          {['Alchemy Safety', 'Privacy Scroll', 'Terms of Alchemy'].map(l => (
-            <a key={l} href="#" style={{ color: '#94A3B8', textDecoration: 'none' }}>{l}</a>
-          ))}
         </div>
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <Link href="/auth/login" style={{ fontSize: '12px', color: '#2563EB', fontWeight: '600', textDecoration: 'none' }}>Sign In</Link>

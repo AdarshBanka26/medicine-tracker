@@ -123,12 +123,7 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#64748B', cursor: 'pointer' }}>
-                <input type="checkbox" style={{ accentColor: '#2563EB' }} /> Remember my essence
-              </label>
-              <a href="#" style={{ fontSize: '12px', color: '#2563EB', textDecoration: 'none', fontWeight: '600' }}>Forgot Pass?</a>
-            </div>
+            <div style={{ marginBottom: '20px' }} />
 
             {error && <ErrorBox>{error}</ErrorBox>}
 
@@ -137,7 +132,6 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <SocialDivider />
         </div>
       </div>
     </div>
@@ -164,19 +158,3 @@ function ErrorBox({ children }) {
   );
 }
 
-function SocialDivider() {
-  return (
-    <div style={{ marginTop: '20px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-        <div style={{ flex: 1, height: '1px', background: '#E8EDFF' }} />
-        <span style={{ fontSize: '11px', color: '#94A3B8', fontWeight: '600', whiteSpace: 'nowrap' }}>CONNECT ASTRAL EMAIL</span>
-        <div style={{ flex: 1, height: '1px', background: '#E8EDFF' }} />
-      </div>
-      <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
-        {['G', 'M', '⚡'].map((icon, i) => (
-          <button key={i} style={{ width: '40px', height: '40px', borderRadius: '10px', border: '1.5px solid #E8EDFF', background: '#F8FAFF', fontSize: '14px', cursor: 'pointer', fontWeight: '700', color: '#475569' }}>{icon}</button>
-        ))}
-      </div>
-    </div>
-  );
-}
