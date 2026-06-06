@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
+import Logo from './Logo';
 
 const navItems = [
   {
@@ -47,7 +48,7 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="sidebar-logo">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <img src="/logo.svg" alt="Alchemist Suite" style={{ width: '32px', height: '32px', flexShrink: 0 }} />
+          <Logo size={32} />
           <div>
             <div className="sidebar-brand">Alchemist Suite</div>
             <div className="sidebar-tagline">Medication Tracker</div>

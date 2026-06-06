@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Logo from '@/components/Logo';
 
 const features = [
   { icon: '⚗️', title: 'Medication Log',  desc: 'Track every medication with dosage, frequency, and full schedule history.' },
@@ -22,7 +23,7 @@ export default function LandingPage() {
         height: '60px',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <img src="/logo.svg" alt="Alchemist Suite" style={{ width: '32px', height: '32px' }} />
+          <Logo size={32} />
           <span style={{ fontSize: '14px', fontWeight: '700', color: '#0F172A' }}>Alchemist Suite</span>
         </div>
 

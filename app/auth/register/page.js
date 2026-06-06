@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Logo from '@/components/Logo';
 
 /* Shared layout constants — must match login/page.js exactly */
 const LEFT_W   = '340px';
@@ -46,7 +47,7 @@ export default function RegisterPage() {
       }}>
         <div>
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '48px', textDecoration: 'none' }}>
-            <img src="/logo.svg" alt="Alchemist Suite" style={{ width: '40px', height: '40px', flexShrink: 0 }} />
+            <Logo size={40} />
             <span style={{ fontSize: '16px', fontWeight: '800', color: '#0F172A' }}>Alchemist Suite</span>
           </Link>
 
