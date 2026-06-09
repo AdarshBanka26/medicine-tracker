@@ -141,7 +141,7 @@ export default function SettingsPage() {
       {/* Google Calendar */}
       <Section title="Google Calendar Sync" emoji="📅">
         <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: 1.6 }}>
-          Connect your Google account to sync elixir schedules and dose status to a dedicated <strong>⚗️ Grand Grimoire</strong> calendar.
+          Connect your Google account to sync your medication schedules and dose status to a dedicated <strong>Pillora</strong> calendar.
           Requires <code style={{ background: '#F3F4F6', padding: '1px 5px', borderRadius: '4px', fontSize: '12px' }}>GOOGLE_CLIENT_ID</code> and{' '}
           <code style={{ background: '#F3F4F6', padding: '1px 5px', borderRadius: '4px', fontSize: '12px' }}>GOOGLE_CLIENT_SECRET</code> in{' '}
           <code style={{ background: '#F3F4F6', padding: '1px 5px', borderRadius: '4px', fontSize: '12px' }}>.env.local</code>.

@@ -58,14 +58,14 @@ export default function LandingPage() {
           lineHeight: 1.08, letterSpacing: '-0.03em',
           color: '#0F172A', marginBottom: '20px',
         }}>
-          Master the Elixirs<br />
+          Never Miss a Dose.<br />
           <span style={{ background: 'linear-gradient(90deg,#2563EB,#7C3AED)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            of the Arena.
+            Stay on Track.
           </span>
         </h1>
 
         <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, maxWidth: '520px', margin: '0 auto 36px' }}>
-          The Pillora combines schedules, smart reminders, AI-powered analytics, and a multi-user vault — so your health rituals never slip.
+          Pillora combines schedules, smart reminders, AI-powered analytics, and separate accounts — so your health routines never slip.
         </p>
 
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '60px' }}>
@@ -115,7 +115,7 @@ export default function LandingPage() {
       {/* ── Features ── */}
       <section style={{ padding: '70px 6%', background: '#fff', borderTop: '1px solid #E8EDFF', borderBottom: '1px solid #E8EDFF' }}>
         <div style={{ textAlign: 'center', marginBottom: '48px', maxWidth: '1100px', margin: '0 auto 48px' }}>
-          <div style={{ fontSize: '11px', color: '#2563EB', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '10px' }}>ARCANE CAPABILITIES</div>
+          <div style={{ fontSize: '11px', color: '#2563EB', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '10px' }}>FEATURES</div>
           <h2 style={{ fontSize: 'clamp(24px,4vw,38px)', fontWeight: '800', letterSpacing: '-0.02em', color: '#0F172A' }}>
             Everything you need to manage your medications<br />
             <span style={{ color: '#2563EB' }}>and stay on schedule</span>
@@ -148,7 +148,7 @@ export default function LandingPage() {
       }}>
         <div style={{ fontSize: '22px', marginBottom: '12px' }}>✦</div>
         <h2 style={{ fontSize: 'clamp(24px,4vw,38px)', fontWeight: '800', letterSpacing: '-0.02em', marginBottom: '12px' }}>
-          Step into the Arena
+          Start Tracking Today
         </h2>
         <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', maxWidth: '420px', margin: '0 auto 28px', lineHeight: 1.7 }}>
           Create your account and start tracking your medications in minutes. AI-powered insights help you build lasting adherence habits.
@@ -171,8 +171,7 @@ export default function LandingPage() {
         fontSize: '12px', color: '#94A3B8', flexWrap: 'wrap', gap: '10px',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span>⚗️</span>
-          <span>© 1892 Mystical Circus & Co.</span>
+          <span>© 2024 Pillora. All rights reserved.</span>
         </div>
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <Link href="/auth/login" style={{ fontSize: '12px', color: '#2563EB', fontWeight: '600', textDecoration: 'none' }}>Sign In</Link>

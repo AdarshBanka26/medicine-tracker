@@ -1,4 +1,4 @@
-const CACHE = 'grimoire-v1';
+const CACHE = 'pillora-v1';
 const PRECACHE = ['/', '/schedules', '/logs', '/calendar', '/manifest.json'];
 
 self.addEventListener('install', (e) => {

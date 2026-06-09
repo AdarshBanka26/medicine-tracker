@@ -5,7 +5,7 @@ import { buildContext } from '@/lib/buildContext';
 
 const SCHEMA = `{
   "highRiskTimes": [
-    { "elixir": "string", "timeOfDay": "string", "missRate": "number", "reason": "string" }
+    { "medication": "string", "timeOfDay": "string", "missRate": "number", "reason": "string" }
   ],
   "nudgeMessage": "string",
   "overallRisk": "low | moderate | high",
@@ -20,7 +20,7 @@ export async function GET() {
 
     const context = await buildContext({ historyDays: 14, userId });
 
-    const prompt = `You are a wellness AI assistant for the Alchemist's Grand Grimoire, a mystical medicine tracker.
+    const prompt = `You are a medication adherence assistant for Pillora, a medication tracker app.
 
 ${context}
 
@@ -28,8 +28,8 @@ Analyze the miss patterns above and return a JSON object matching this exact sch
 ${SCHEMA}
 
 Rules:
-- highRiskTimes: list up to 3 elixir+time combinations with the highest miss rates. Only include if miss rate > 20% AND at least 3 data points. Leave empty array if no data.
-- nudgeMessage: a single friendly, circus-themed sentence warning about the top risk. If no risk patterns found, write an encouraging message.
+- highRiskTimes: list up to 3 medication+time combinations with the highest miss rates. Only include if miss rate > 20% AND at least 3 data points. Leave empty array if no data.
+- nudgeMessage: a single friendly, plain-language sentence warning about the top risk. If no risk patterns found, write an encouraging message.
 - overallRisk: "low" if average miss rate < 20%, "moderate" if 20-50%, "high" if > 50%. Default "low" if no history.
 - summary: 1-2 sentence human-readable summary of adherence patterns.
 
@@ -44,7 +44,7 @@ Return ONLY valid JSON, no markdown, no explanation.`;
     } catch {
       parsed = {
         highRiskTimes: [],
-        nudgeMessage: 'The Grimoire is still gathering your mystical patterns. Keep logging your elixirs!',
+        nudgeMessage: 'Not enough data yet to detect patterns. Keep logging your medications!',
         overallRisk: 'low',
         summary: 'Not enough data yet to detect patterns.',
       };

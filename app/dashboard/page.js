@@ -236,7 +236,7 @@ export default function Dashboard() {
             borderRadius: '8px', textAlign: 'center',
             fontSize: '12px', color: 'var(--blue)', fontWeight: '600', textDecoration: 'none',
           }}>
-            View All Performers →
+            View All Reminders →
           </Link>
 
           {/* Quick stats */}

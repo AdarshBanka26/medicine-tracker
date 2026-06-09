@@ -41,7 +41,7 @@ export async function POST(request) {
     const rate    = Math.round((taken / logs.length) * 100);
 
     let targetLogs = logs;
-    let subjectLine = `⚗️ Grand Grimoire — Daily Digest for ${today}`;
+    let subjectLine = `💊 Pillora — Daily Digest for ${today}`;
 
     if (type === 'pending-now') {
       const now = Date.now();
@@ -52,13 +52,13 @@ export async function POST(request) {
       if (targetLogs.length === 0) {
         return NextResponse.json({ message: 'No doses due in the next 30 minutes.' });
       }
-      subjectLine = `⚗️ Upcoming Elixirs — ${targetLogs.length} dose(s) due soon`;
+      subjectLine = `💊 Upcoming Doses — ${targetLogs.length} dose(s) due soon`;
     }
 
     const rows = targetLogs.map(log => `
       <tr>
         <td style="padding:8px 12px;border-bottom:1px solid rgba(76,29,149,.3);">
-          <strong class="gold">🧪 ${log.elixirName}</strong><br>
+          <strong class="gold">💊 ${log.elixirName}</strong><br>
           <span style="font-size:12px;color:#c9b88a;">${log.dosage}</span>
         </td>
         <td style="padding:8px 12px;border-bottom:1px solid rgba(76,29,149,.3);text-align:center;">
@@ -91,7 +91,7 @@ export async function POST(request) {
         <table style="width:100%;border-collapse:collapse;">
           <thead>
             <tr>
-              <th style="text-align:left;padding:6px 12px;font-size:11px;color:#c9b88a;letter-spacing:.06em;">ELIXIR</th>
+              <th style="text-align:left;padding:6px 12px;font-size:11px;color:#c9b88a;letter-spacing:.06em;">MEDICATION</th>
               <th style="text-align:center;padding:6px 12px;font-size:11px;color:#c9b88a;letter-spacing:.06em;">TIME</th>
               <th style="text-align:center;padding:6px 12px;font-size:11px;color:#c9b88a;letter-spacing:.06em;">STATUS</th>
             </tr>
@@ -99,7 +99,7 @@ export async function POST(request) {
           <tbody>${rows}</tbody>
         </table>
         <div style="text-align:center;">
-          <a href="${baseUrl}" class="btn">Open the Grimoire →</a>
+          <a href="${baseUrl}" class="btn">Open Pillora →</a>
         </div>
       </div>`;
 

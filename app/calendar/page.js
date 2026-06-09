@@ -122,7 +122,7 @@ export default function CalendarPage() {
       {/* Header */}
       <div style={{ marginBottom: '20px' }}>
         <h1 style={{ fontSize: '20px', fontWeight: '700', color: 'var(--text-primary)', margin: '0 0 4px' }}>
-          Sky Calendar
+          Calendar
         </h1>
         <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
           All medication schedules and adherence history in one view

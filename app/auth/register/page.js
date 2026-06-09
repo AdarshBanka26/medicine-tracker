@@ -71,7 +71,7 @@ export default function RegisterPage() {
               </div>
             ))}
           </div>
-          <p style={{ fontSize: '11px', color: '#CBD5E1' }}>© 1892 Mystical Circus Elixirs &amp; Co.</p>
+          <p style={{ fontSize: '11px', color: '#CBD5E1' }}>© 2024 Pillora. All rights reserved.</p>
         </div>
       </div>
 
