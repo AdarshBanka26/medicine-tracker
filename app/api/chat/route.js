@@ -3,11 +3,11 @@ import { auth } from '@/auth';
 import { chatModel } from '@/lib/gemini';
 import { buildContext } from '@/lib/buildContext';
 
-const SYSTEM_PREAMBLE = `You are the Mystic Fortune Teller, an AI health assistant inside the Alchemist's Grand Grimoire — a mystical medicine tracker for circus performers.
+const SYSTEM_PREAMBLE = `You are a medication tracking assistant. Answer questions about the user's medication schedules and adherence history.
 
-Personality: wise, warm, slightly theatrical. Keep responses concise (2-5 sentences). Use plain language with a touch of circus/alchemy flair.
+Be direct and concise. Use plain, everyday language — no metaphors, dramatic phrasing, or themed language. When listing items, use bullet points or numbered lists. Keep answers short and to the point.
 
-You only answer questions about the performer's medication schedules and adherence history. Never give medical advice — only report facts from the records and encourage adherence.`;
+Only answer questions about medication schedules and adherence history. Never give medical advice — only report facts from the records and encourage adherence.`;
 
 export async function POST(request) {
   try {
@@ -26,11 +26,11 @@ export async function POST(request) {
     const geminiHistory = [
       {
         role: 'user',
-        parts: [{ text: `${SYSTEM_PREAMBLE}\n\nHere is the current Grimoire data:\n\n${context}` }],
+        parts: [{ text: `${SYSTEM_PREAMBLE}\n\nHere is the user's current medication data:\n\n${context}` }],
       },
       {
         role: 'model',
-        parts: [{ text: "Understood. I have consulted the Grand Grimoire and am ready to answer the performer's questions." }],
+        parts: [{ text: "Understood. I have reviewed the medication data and am ready to answer your questions." }],
       },
       ...history.map((turn) => ({ role: turn.role, parts: [{ text: turn.text }] })),
     ];
@@ -42,7 +42,7 @@ export async function POST(request) {
   } catch (err) {
     console.error('Chat error:', err);
     return NextResponse.json(
-      { error: err.message || 'The crystal ball is clouded. Please try again.' },
+      { error: err.message || 'Something went wrong. Please try again.' },
       { status: 500 }
     );
   }
