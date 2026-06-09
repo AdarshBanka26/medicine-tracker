@@ -1,7 +1,7 @@
 import ScheduleForm from '@/components/ScheduleForm';
 import Link from 'next/link';
 
-export const metadata = { title: 'Edit Medication — Alchemist Suite' };
+export const metadata = { title: 'Edit Medication — Pillora' };
 
 async function getSchedule(id) {
   const base = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';

@@ -48,7 +48,7 @@ export default function RegisterPage() {
         <div>
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '48px', textDecoration: 'none' }}>
             <Logo size={40} />
-            <span style={{ fontSize: '16px', fontWeight: '800', color: '#0F172A' }}>Alchemist Suite</span>
+            <span style={{ fontSize: '16px', fontWeight: '800', color: '#0F172A' }}>Pillora</span>
           </Link>
 
           <h2 style={{ fontSize: '22px', fontWeight: '800', color: '#0F172A', lineHeight: 1.25, marginBottom: '12px' }}>

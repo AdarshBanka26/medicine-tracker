@@ -1,7 +1,7 @@
 import ScheduleForm from '@/components/ScheduleForm';
 import Link from 'next/link';
 
-export const metadata = { title: 'New Medication — Alchemist Suite' };
+export const metadata = { title: 'New Medication — Pillora' };
 
 export default function NewSchedulePage() {
   return (

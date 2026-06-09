@@ -4,7 +4,7 @@ import { auth } from '@/auth';
 import AppShell from '@/components/AppShell';
 
 export const metadata = {
-  title: "Alchemist Suite",
+  title: "Pillora",
   description: 'Medication tracker with AI-powered adherence insights',
 };
 
