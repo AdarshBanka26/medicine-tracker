@@ -24,7 +24,7 @@ export default function TopNav() {
   const { data: session } = useSession();
 
   const cfg = PAGE_CONFIG[pathname] ??
-    (pathname.includes('/edit') ? { title: 'Edit Medication', section: 'Medications' } : { title: 'Alchemist Suite', section: '' });
+    (pathname.includes('/edit') ? { title: 'Edit Medication', section: 'Medications' } : { title: 'Pillora', section: '' });
 
   const initials = (session?.user?.name || 'MA').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
 
@@ -41,7 +41,7 @@ export default function TopNav() {
     }}>
       {/* Left: breadcrumb */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-        <Link href="/" style={{ fontSize: '12px', color: 'var(--text-muted)', textDecoration: 'none' }}>Alchemist Suite</Link>
+        <Link href="/" style={{ fontSize: '12px', color: 'var(--text-muted)', textDecoration: 'none' }}>Pillora</Link>
         {cfg.section && (
           <>
             <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#94A3B8" strokeWidth="2">

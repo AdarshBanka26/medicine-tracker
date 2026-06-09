@@ -27,7 +27,7 @@ export default function AppShell({ children }) {
           {children}
         </div>
         <footer className="app-footer">
-          <span>Alchemist Suite &copy; 2024 Circus Alchemist Corp. All rights reserved.</span>
+          <span>Pillora &copy; 2024. All rights reserved.</span>
         </footer>
       </div>
       <ChatBot />

@@ -50,7 +50,7 @@ export default function Sidebar() {
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
           <Logo size={32} />
           <div>
-            <div className="sidebar-brand">Alchemist Suite</div>
+            <div className="sidebar-brand">Pillora</div>
             <div className="sidebar-tagline">Medication Tracker</div>
           </div>
         </Link>

@@ -116,7 +116,7 @@ export default function SettingsPage() {
       {/* Header */}
       <div style={{ marginBottom: '24px' }}>
         <h1 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '4px' }}>Settings</h1>
-        <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>System status and configuration for the Alchemist Suite</p>
+        <p style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>System status and configuration for the Pillora</p>
       </div>
 
       {/* System Status */}

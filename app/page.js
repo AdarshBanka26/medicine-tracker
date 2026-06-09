@@ -24,7 +24,7 @@ export default function LandingPage() {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Logo size={32} />
-          <span style={{ fontSize: '14px', fontWeight: '700', color: '#0F172A' }}>Alchemist Suite</span>
+          <span style={{ fontSize: '14px', fontWeight: '700', color: '#0F172A' }}>Pillora</span>
         </div>
 
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
@@ -65,7 +65,7 @@ export default function LandingPage() {
         </h1>
 
         <p style={{ fontSize: '16px', color: '#64748B', lineHeight: 1.75, maxWidth: '520px', margin: '0 auto 36px' }}>
-          The Alchemist Suite combines schedules, smart reminders, AI-powered analytics, and a multi-user vault — so your health rituals never slip.
+          The Pillora combines schedules, smart reminders, AI-powered analytics, and a multi-user vault — so your health rituals never slip.
         </p>
 
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '60px' }}>
