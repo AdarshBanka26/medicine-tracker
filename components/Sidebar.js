@@ -47,13 +47,13 @@ export default function Sidebar() {
     <aside className="sidebar">
       {/* Logo */}
       <div className="sidebar-logo">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
           <Logo size={32} />
           <div>
             <div className="sidebar-brand">Alchemist Suite</div>
             <div className="sidebar-tagline">Medication Tracker</div>
           </div>
-        </div>
+        </Link>
       </div>
 
       {/* User */}

@@ -5,7 +5,7 @@ const features = [
   { icon: '⚗️', title: 'Medication Log',  desc: 'Track every medication with dosage, frequency, and full schedule history.' },
   { icon: '🔔', title: 'Smart Reminders', desc: 'Browser notifications and email alerts so you never miss a dose.' },
   { icon: '📅', title: 'Calendar',        desc: 'Visualise your full dosing schedule and sync with Google Calendar.' },
-  { icon: '✦',  title: 'AI Assistant',    desc: 'Gemini-powered insights surface adherence patterns and personalised nudges.' },
+  { icon: '✦',  title: 'AI Assistant',    desc: 'Smart insights surface adherence patterns and personalised nudges.' },
   { icon: '📊', title: 'Analytics',       desc: 'Live gauges, 7-day trends, and risk-level alerts at a glance.' },
   { icon: '👥', title: 'Multi-User',      desc: 'Fully isolated workspaces — each account sees only their own data.' },
 ];
@@ -50,7 +50,7 @@ export default function LandingPage() {
           borderRadius: '20px', padding: '5px 14px', marginBottom: '24px',
           fontSize: '11px', color: '#2563EB', fontWeight: '700', letterSpacing: '0.05em',
         }}>
-          ✦ NOW WITH GEMINI AI ORACLE INSIGHTS
+          ✦ NOW WITH AI-POWERED INSIGHTS
         </div>
 
         <h1 style={{

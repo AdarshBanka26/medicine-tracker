@@ -74,7 +74,7 @@ export default function ChatBot() {
       if (!res.ok) throw new Error(data.error);
       setMessages([...next, { role: 'model', text: data.text }]);
     } catch (err) {
-      setError(err.message || 'AI unavailable. Check your GEMINI_API_KEY.');
+      setError(err.message || 'Assistant unavailable. Please try again later.');
     } finally { setLoading(false); }
   }
 
@@ -137,7 +137,7 @@ export default function ChatBot() {
             }}>✦</div>
             <div>
               <div style={{ fontSize: '13px', fontWeight: '700', color: '#fff' }}>AI Assistant</div>
-              <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)' }}>Powered by Gemini AI</div>
+              <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)' }}>Ask anything about your meds</div>
             </div>
             <div style={{
               marginLeft: 'auto', fontSize: '11px', fontWeight: '600',

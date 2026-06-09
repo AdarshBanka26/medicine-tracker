@@ -132,8 +132,8 @@ export default function SettingsPage() {
           ok={scheduleCount !== null}
         />
         <StatusRow
-          label="AI Model"
-          value="gemini-2.5-flash"
+          label="AI Assistant"
+          value="Available"
           ok={true}
         />
       </Section>

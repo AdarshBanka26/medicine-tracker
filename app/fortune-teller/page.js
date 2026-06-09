@@ -109,7 +109,7 @@ export default function AIAssistantPage() {
       if (!res.ok) throw new Error(data.error);
       setMessages([...next, { role: 'model', text: data.text }]);
     } catch (err) {
-      setError(err.message || 'AI unavailable. Check your Gemini API key.');
+      setError(err.message || 'Assistant unavailable. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -149,7 +149,7 @@ export default function AIAssistantPage() {
             }}>✦</div>
             <div>
               <div style={{ fontSize: '13px', fontWeight: '600' }}>AI Assistant</div>
-              <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Powered by Gemini AI</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Ask about your adherence & schedules</div>
             </div>
           </div>
 

@@ -41,7 +41,7 @@ export default function TopNav() {
     }}>
       {/* Left: breadcrumb */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-        <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Alchemist Suite</span>
+        <Link href="/" style={{ fontSize: '12px', color: 'var(--text-muted)', textDecoration: 'none' }}>Alchemist Suite</Link>
         {cfg.section && (
           <>
             <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#94A3B8" strokeWidth="2">
